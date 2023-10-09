@@ -1,7 +1,14 @@
 package com.FoodMakerServices.service;
 
+import java.util.List;
+
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
 import com.FoodMakerServices.entity.Usuario;
+import com.FoodMakerServices.entity.dao.LoginDao;
 
 public interface UsuarioService {
 	public Usuario addUsuario(Usuario usuario);
+	public Usuario login(LoginDao login) throws UsernameNotFoundException;
+	public List<Usuario> getAll();
 }
