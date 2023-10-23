@@ -11,4 +11,42 @@ public class AvailableRS {
 	private String descripcioncorta;
 	private List<Ingrediente> ingredientes;
 	private String imagenurl;
+	
+	
+	public int getOrden() {
+		return orden;
+	}
+	public void setOrden(int orden) {
+		this.orden = orden;
+	}
+	public int getDuracion() {
+		return duracion;
+	}
+	public void setDuracion(int duracion) {
+		this.duracion = duracion;
+	}
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public String getDescripcioncorta() {
+		return descripcioncorta;
+	}
+	public void setDescripcioncorta(String descripcioncorta) {
+		this.descripcioncorta = descripcioncorta;
+	}
+	public List<Ingrediente> getIngredientes() {
+		return ingredientes;
+	}
+	public void setIngredientes(List<Ingrediente> ingredientes) {
+		this.ingredientes = ingredientes;
+	}
+	public String getImagenurl() {
+		return imagenurl;
+	}
+	public void setImagenurl(String imagenurl) {
+		this.imagenurl = imagenurl;
+	}
 }

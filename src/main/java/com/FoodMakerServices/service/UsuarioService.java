@@ -9,6 +9,8 @@ import com.FoodMakerServices.entity.dao.LoginDao;
 
 public interface UsuarioService {
 	public Usuario addUsuario(Usuario usuario);
+	public Usuario getByCorreo(String correo);
+	public Usuario getByNombre(String nombre);
 	public Usuario login(LoginDao login) throws UsernameNotFoundException;
 	public List<Usuario> getAll();
 }

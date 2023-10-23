@@ -17,13 +17,12 @@ public class UsuarioUserDetailsService implements UserDetailsService {
 	UsuarioRepository repoUser;
 
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Usuario usuario = repoUser.findByNombre(username);
+	public UserDetails loadUserByUsername(String correo) throws UsernameNotFoundException {
+		Usuario usuario = repoUser.findByCorreo(correo);
 		
 		if (usuario == null)
-			throw new UsernameNotFoundException("Cuenta " + username + " no existe");
+			throw new UsernameNotFoundException("Cuenta " + correo + " no existe");
 		
 		return new UsuarioUserDetailsComponent(usuario);
 	}
-
 }

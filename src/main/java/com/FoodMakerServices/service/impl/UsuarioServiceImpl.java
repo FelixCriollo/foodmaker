@@ -49,5 +49,23 @@ public class UsuarioServiceImpl implements UsuarioService {
 		return user;
 	}
 
+	@Override
+	public Usuario getByCorreo(String correo) {
+		Usuario user = null;
+		
+		user = repo.findByCorreo(correo);
+		
+		return user;
+	}
+
+	@Override
+	public Usuario getByNombre(String nombre) {
+		Usuario user = null;
+		
+		user = repo.findByNombre(nombre);
+		
+		return user;
+	}
+
 
 }
