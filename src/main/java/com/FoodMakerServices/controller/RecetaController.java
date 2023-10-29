@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.FoodMakerServices.entity.Receta;
 import com.FoodMakerServices.entity.Usuario;
-import com.FoodMakerServices.entity.dao.LoginDao;
 import com.FoodMakerServices.entity.dao.receta.AvailableRQ;
 import com.FoodMakerServices.entity.dao.receta.AvailableRS;
 import com.FoodMakerServices.service.RecetaService;
@@ -42,5 +41,4 @@ public class RecetaController {
 		
 		return recetaService.getAvailabilities(aval, user);
 	}
-	
 }

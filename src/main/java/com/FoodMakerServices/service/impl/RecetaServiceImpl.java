@@ -17,6 +17,7 @@ public class RecetaServiceImpl implements RecetaService {
 	@Autowired
 	RecetaRepository repo;
 	
+	@Override
 	public List<Receta> getAll() {
 		return (List<Receta>) repo.findAll();
 	}
