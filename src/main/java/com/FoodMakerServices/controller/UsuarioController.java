@@ -32,9 +32,9 @@ public class UsuarioController {
 		return usuarioService.addUsuario(usuario);
 	}
 	
-	@PostMapping("/login")
+	@PostMapping(value = "/login")
 	@ResponseBody
-	public Usuario login(@RequestBody LoginDao login) {
+	public Usuario login(@RequestBody LoginDao login) {		
 		return usuarioService.login(login);
 	}
 	
