@@ -48,6 +48,7 @@ public class WebSecurityConfig {
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())
+                .cors(cors -> cors.configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues()))
                 //.cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues())
                 .authorizeHttpRequests((authz) -> authz
                     .requestMatchers("/").permitAll()
@@ -55,8 +56,7 @@ public class WebSecurityConfig {
                     .requestMatchers(HttpMethod.POST, "/login").permitAll()
                     .anyRequest().authenticated()
                 )
-                .httpBasic(Customizer.withDefaults())
-                .cors(cors -> cors.disable());
+                .httpBasic(Customizer.withDefaults());
         return http.build();
     }
     

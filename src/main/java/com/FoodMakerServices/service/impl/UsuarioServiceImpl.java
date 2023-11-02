@@ -41,7 +41,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 		Usuario user = null;
 		
 		for (Usuario u : repo.findAll()) {
-			if (u.getNombre().equals(login.getNombre()) && encoder.matches(login.getContrasenia(), u.getContrasenia())) {
+			if (u.getCorreo().equals(login.getCorreo()) && encoder.matches(login.getContrasenia(), u.getContrasenia())) {
 				user = u;
 			}
 		}		
