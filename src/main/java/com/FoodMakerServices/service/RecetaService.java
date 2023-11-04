@@ -8,6 +8,9 @@ import com.FoodMakerServices.entity.dao.receta.AvailableRQ;
 import com.FoodMakerServices.entity.dao.receta.AvailableRS;
 
 public interface RecetaService {
+	public Receta addReceta(Receta receta);
+	public Receta updateReceta(Receta receta);
+	public boolean deleteReceta(Receta receta);
 	public List<Receta> getAll();
 	public List<AvailableRS> getAvailabilities(AvailableRQ aval, Usuario user);
 }

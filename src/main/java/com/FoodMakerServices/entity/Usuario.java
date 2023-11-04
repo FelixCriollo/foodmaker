@@ -1,18 +1,19 @@
 package com.FoodMakerServices.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+
+import jakarta.persistence.*;
+import lombok.Data;
+
 
 @Entity
 @Table(name = "usuario")
 public class Usuario {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idusuario;
 	private String nombre;
 	private String contrasenia;
 	private String correo;
-	
 	public int getIdusuario() {
 		return idusuario;
 	}
@@ -37,4 +38,6 @@ public class Usuario {
 	public void setCorreo(String correo) {
 		this.correo = correo;
 	}
+	
+
 }

@@ -3,9 +3,7 @@ package com.FoodMakerServices.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -14,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.FoodMakerServices.entity.Usuario;
 import com.FoodMakerServices.entity.dao.LoginDao;
 import com.FoodMakerServices.service.UsuarioService;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 public class UsuarioController {
@@ -34,8 +33,13 @@ public class UsuarioController {
 	
 	@PostMapping(value = "/login")
 	@ResponseBody
-	public Usuario login(@RequestBody LoginDao login) {		
-		return usuarioService.login(login);
+	public Usuario login(@RequestBody LoginDao login) {
+		Usuario usuarioExistente = usuarioService.login(login);
+		if(usuarioExistente != null){
+			return usuarioExistente;
+		}else{
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND,"No se encontró el usuario");
+		}
 	}
 	
 }
