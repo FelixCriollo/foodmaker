@@ -14,6 +14,11 @@ public class Usuario {
 	private String nombre;
 	private String contrasenia;
 	private String correo;
+	
+	public Usuario() {
+		
+	}
+	
 	public int getIdusuario() {
 		return idusuario;
 	}
@@ -38,6 +43,8 @@ public class Usuario {
 	public void setCorreo(String correo) {
 		this.correo = correo;
 	}
+	
+	
 	
 
 }
