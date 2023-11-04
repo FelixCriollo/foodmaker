@@ -6,5 +6,4 @@ import lombok.Data;
 public class LoginDao {
 	private String correo;
 	private String contrasenia;
-
 }

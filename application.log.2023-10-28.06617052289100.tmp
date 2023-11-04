@@ -1,0 +1,136 @@
+2023-10-28T00:11:33.223-05:00  INFO 1168 --- [RMI TCP Connection(203)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2023-10-28T00:11:33.290-05:00  INFO 1168 --- [RMI TCP Connection(203)-127.0.0.1] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-10-28T00:11:33.297-05:00  INFO 1168 --- [RMI TCP Connection(203)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-10-28T00:11:33.325-05:00  INFO 1168 --- [RMI TCP Connection(203)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-10-28T00:11:33.344-05:00  INFO 1168 --- [RMI TCP Connection(203)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-10-28T00:11:33.353-05:00  INFO 1168 --- [RMI TCP Connection(203)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-10-28T22:30:48.042-05:00  INFO 16628 --- [restartedMain] c.F.FoodMakerServicesApplication         : Starting FoodMakerServicesApplication using Java 17.0.2 with PID 16628 (E:\_Estudios\Cibertec\Ciclo-6\Proyecto_FoodMaker\foodmaker\target\classes started by Gamer in E:\_Estudios\Cibertec\Ciclo-6\Proyecto_FoodMaker\foodmaker)
+2023-10-28T22:30:48.056-05:00  INFO 16628 --- [restartedMain] c.F.FoodMakerServicesApplication         : No active profile set, falling back to 1 default profile: "default"
+2023-10-28T22:30:48.122-05:00  INFO 16628 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-10-28T22:30:48.123-05:00  INFO 16628 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-10-28T22:30:49.005-05:00  INFO 16628 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-10-28T22:30:49.109-05:00  INFO 16628 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 90 ms. Found 2 JPA repository interfaces.
+2023-10-28T22:30:49.882-05:00  INFO 16628 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-10-28T22:30:49.894-05:00  INFO 16628 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-10-28T22:30:49.894-05:00  INFO 16628 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.13]
+2023-10-28T22:30:49.977-05:00  INFO 16628 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-10-28T22:30:49.978-05:00  INFO 16628 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1854 ms
+2023-10-28T22:30:50.136-05:00  INFO 16628 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-10-28T22:30:50.475-05:00  INFO 16628 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@48dc60db
+2023-10-28T22:30:50.477-05:00  INFO 16628 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-10-28T22:30:50.530-05:00  INFO 16628 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-10-28T22:30:50.622-05:00  INFO 16628 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.9.Final
+2023-10-28T22:30:50.626-05:00  INFO 16628 --- [restartedMain] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2023-10-28T22:30:50.946-05:00  INFO 16628 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-10-28T22:30:51.147-05:00  INFO 16628 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-10-28T22:30:51.455-05:00  INFO 16628 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-10-28T22:30:52.229-05:00  INFO 16628 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-10-28T22:30:52.232-05:00  INFO 16628 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-10-28T22:30:52.636-05:00  WARN 16628 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-10-28T22:30:52.937-05:00  INFO 16628 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@599bd84d, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@43003412, org.springframework.security.web.context.SecurityContextHolderFilter@24b354e9, org.springframework.security.web.header.HeaderWriterFilter@71fb4dff, org.springframework.security.web.authentication.logout.LogoutFilter@49131689, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@1331360a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7bbdff7e, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2e3c5758, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@25ff5453, org.springframework.security.web.access.ExceptionTranslationFilter@591e8d2, org.springframework.security.web.access.intercept.AuthorizationFilter@7831d3ee]
+2023-10-28T22:30:53.141-05:00  INFO 16628 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-10-28T22:30:53.187-05:00  INFO 16628 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-10-28T22:30:53.197-05:00  INFO 16628 --- [restartedMain] c.F.FoodMakerServicesApplication         : Started FoodMakerServicesApplication in 5.662 seconds (process running for 6.822)
+2023-10-28T22:31:37.053-05:00  INFO 16628 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-28T22:31:37.053-05:00  INFO 16628 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-10-28T22:31:37.055-05:00  INFO 16628 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2023-10-28T22:35:22.397-05:00  INFO 16628 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 2 class path changes (0 additions, 0 deletions, 2 modifications)
+2023-10-28T22:35:22.419-05:00  INFO 16628 --- [Thread-5] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-10-28T22:35:22.422-05:00  INFO 16628 --- [Thread-5] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-10-28T22:35:22.477-05:00  INFO 16628 --- [Thread-5] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-10-28T22:35:22.483-05:00  INFO 16628 --- [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-10-28T22:35:22.502-05:00  INFO 16628 --- [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-10-28T22:35:22.605-05:00  INFO 16628 --- [restartedMain] c.F.FoodMakerServicesApplication         : Starting FoodMakerServicesApplication using Java 17.0.2 with PID 16628 (E:\_Estudios\Cibertec\Ciclo-6\Proyecto_FoodMaker\foodmaker\target\classes started by Gamer in E:\_Estudios\Cibertec\Ciclo-6\Proyecto_FoodMaker\foodmaker)
+2023-10-28T22:35:22.606-05:00  INFO 16628 --- [restartedMain] c.F.FoodMakerServicesApplication         : No active profile set, falling back to 1 default profile: "default"
+2023-10-28T22:35:22.920-05:00  INFO 16628 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-10-28T22:35:22.978-05:00  INFO 16628 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 56 ms. Found 2 JPA repository interfaces.
+2023-10-28T22:35:23.296-05:00  INFO 16628 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-10-28T22:35:23.297-05:00  INFO 16628 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-10-28T22:35:23.298-05:00  INFO 16628 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.13]
+2023-10-28T22:35:23.433-05:00  INFO 16628 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-10-28T22:35:23.434-05:00  INFO 16628 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 825 ms
+2023-10-28T22:35:23.579-05:00  INFO 16628 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2023-10-28T22:35:23.610-05:00  INFO 16628 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3448608c
+2023-10-28T22:35:23.611-05:00  INFO 16628 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2023-10-28T22:35:23.613-05:00  INFO 16628 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-10-28T22:35:23.627-05:00  INFO 16628 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-10-28T22:35:23.628-05:00  INFO 16628 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-10-28T22:35:23.655-05:00  INFO 16628 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-10-28T22:35:23.809-05:00  INFO 16628 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-10-28T22:35:23.814-05:00  INFO 16628 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-10-28T22:35:24.018-05:00  WARN 16628 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-10-28T22:35:24.258-05:00  INFO 16628 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6e678ae2, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7fe28d64, org.springframework.security.web.context.SecurityContextHolderFilter@6f4a0b00, org.springframework.security.web.header.HeaderWriterFilter@3dcff875, org.springframework.security.web.authentication.logout.LogoutFilter@6812cce6, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@10ec01e5, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@56e3cbf3, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@15719191, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5039a886, org.springframework.security.web.access.ExceptionTranslationFilter@201c69af, org.springframework.security.web.access.intercept.AuthorizationFilter@3902dec0]
+2023-10-28T22:35:24.498-05:00  INFO 16628 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-10-28T22:35:24.537-05:00  INFO 16628 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-10-28T22:35:24.551-05:00  INFO 16628 --- [restartedMain] c.F.FoodMakerServicesApplication         : Started FoodMakerServicesApplication in 1.981 seconds (process running for 278.175)
+2023-10-28T22:35:24.554-05:00  INFO 16628 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2023-10-28T22:35:25.963-05:00  INFO 16628 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 2 class path changes (0 additions, 0 deletions, 2 modifications)
+2023-10-28T22:35:26.014-05:00  INFO 16628 --- [Thread-7] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-10-28T22:35:26.042-05:00  INFO 16628 --- [Thread-7] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-10-28T22:35:26.047-05:00  INFO 16628 --- [Thread-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2023-10-28T22:35:26.066-05:00  INFO 16628 --- [Thread-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+2023-10-28T22:35:26.195-05:00  INFO 16628 --- [restartedMain] c.F.FoodMakerServicesApplication         : Starting FoodMakerServicesApplication using Java 17.0.2 with PID 16628 (E:\_Estudios\Cibertec\Ciclo-6\Proyecto_FoodMaker\foodmaker\target\classes started by Gamer in E:\_Estudios\Cibertec\Ciclo-6\Proyecto_FoodMaker\foodmaker)
+2023-10-28T22:35:26.195-05:00  INFO 16628 --- [restartedMain] c.F.FoodMakerServicesApplication         : No active profile set, falling back to 1 default profile: "default"
+2023-10-28T22:35:26.723-05:00  INFO 16628 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-10-28T22:35:26.784-05:00  INFO 16628 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 61 ms. Found 2 JPA repository interfaces.
+2023-10-28T22:35:27.055-05:00  INFO 16628 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-10-28T22:35:27.056-05:00  INFO 16628 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-10-28T22:35:27.056-05:00  INFO 16628 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.13]
+2023-10-28T22:35:27.101-05:00  INFO 16628 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-10-28T22:35:27.102-05:00  INFO 16628 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 904 ms
+2023-10-28T22:35:27.253-05:00  INFO 16628 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+2023-10-28T22:35:27.275-05:00  INFO 16628 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-3 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6af3ac87
+2023-10-28T22:35:27.275-05:00  INFO 16628 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+2023-10-28T22:35:27.277-05:00  INFO 16628 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-10-28T22:35:27.295-05:00  INFO 16628 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-10-28T22:35:27.296-05:00  INFO 16628 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-10-28T22:35:27.316-05:00  INFO 16628 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-10-28T22:35:27.404-05:00  INFO 16628 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-10-28T22:35:27.405-05:00  INFO 16628 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-10-28T22:35:27.561-05:00  WARN 16628 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-10-28T22:35:27.710-05:00  INFO 16628 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@24c9f500, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@263b9cd8, org.springframework.security.web.context.SecurityContextHolderFilter@6e93c407, org.springframework.security.web.header.HeaderWriterFilter@1af142ab, org.springframework.security.web.authentication.logout.LogoutFilter@265c87b6, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@66eabf5c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@224abf7e, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@46eb34e2, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2009ebf1, org.springframework.security.web.access.ExceptionTranslationFilter@4955a20f, org.springframework.security.web.access.intercept.AuthorizationFilter@4e490fa9]
+2023-10-28T22:35:27.861-05:00  INFO 16628 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-10-28T22:35:27.897-05:00  INFO 16628 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-10-28T22:35:27.914-05:00  INFO 16628 --- [restartedMain] c.F.FoodMakerServicesApplication         : Started FoodMakerServicesApplication in 1.777 seconds (process running for 281.539)
+2023-10-28T22:35:27.917-05:00  INFO 16628 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2023-10-28T22:35:27.946-05:00  INFO 16628 --- [RMI TCP Connection(15)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2023-10-28T22:35:27.969-05:00  INFO 16628 --- [RMI TCP Connection(15)-127.0.0.1] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-10-28T22:35:27.982-05:00  INFO 16628 --- [RMI TCP Connection(15)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-10-28T22:35:27.982-05:00  INFO 16628 --- [RMI TCP Connection(15)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
+2023-10-28T22:35:28.004-05:00  INFO 16628 --- [RMI TCP Connection(15)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.
+2023-10-28T22:35:32.860-05:00  INFO 15600 --- [restartedMain] c.F.FoodMakerServicesApplication         : Starting FoodMakerServicesApplication using Java 17.0.2 with PID 15600 (E:\_Estudios\Cibertec\Ciclo-6\Proyecto_FoodMaker\foodmaker\target\classes started by Gamer in E:\_Estudios\Cibertec\Ciclo-6\Proyecto_FoodMaker\foodmaker)
+2023-10-28T22:35:32.865-05:00  INFO 15600 --- [restartedMain] c.F.FoodMakerServicesApplication         : No active profile set, falling back to 1 default profile: "default"
+2023-10-28T22:35:32.930-05:00  INFO 15600 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-10-28T22:35:32.931-05:00  INFO 15600 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-10-28T22:35:34.508-05:00  INFO 15600 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-10-28T22:35:34.670-05:00  INFO 15600 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 147 ms. Found 2 JPA repository interfaces.
+2023-10-28T22:35:36.069-05:00  INFO 15600 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-10-28T22:35:36.087-05:00  INFO 15600 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-10-28T22:35:36.087-05:00  INFO 15600 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.13]
+2023-10-28T22:35:36.197-05:00  INFO 15600 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-10-28T22:35:36.198-05:00  INFO 15600 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3265 ms
+2023-10-28T22:35:36.426-05:00  INFO 15600 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-10-28T22:35:36.865-05:00  INFO 15600 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1c18c687
+2023-10-28T22:35:36.869-05:00  INFO 15600 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-10-28T22:35:36.942-05:00  INFO 15600 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-10-28T22:35:37.018-05:00  INFO 15600 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.9.Final
+2023-10-28T22:35:37.021-05:00  INFO 15600 --- [restartedMain] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2023-10-28T22:35:37.252-05:00  INFO 15600 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-10-28T22:35:37.478-05:00  INFO 15600 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-10-28T22:35:37.801-05:00  INFO 15600 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-10-28T22:35:38.614-05:00  INFO 15600 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-10-28T22:35:38.617-05:00  INFO 15600 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-10-28T22:35:39.038-05:00  WARN 15600 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-10-28T22:35:39.327-05:00  INFO 15600 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@58aab56d, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@624a5dea, org.springframework.security.web.context.SecurityContextHolderFilter@31bf72a8, org.springframework.security.web.header.HeaderWriterFilter@1d8b4115, org.springframework.security.web.authentication.logout.LogoutFilter@254ec44e, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@2553e12b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@683deb27, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@35f8d3d9, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@e8610c6, org.springframework.security.web.access.ExceptionTranslationFilter@624e3d7d, org.springframework.security.web.access.intercept.AuthorizationFilter@6e8cd8b8]
+2023-10-28T22:35:39.536-05:00  INFO 15600 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-10-28T22:35:39.582-05:00  INFO 15600 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-10-28T22:35:39.595-05:00  INFO 15600 --- [restartedMain] c.F.FoodMakerServicesApplication         : Started FoodMakerServicesApplication in 7.327 seconds (process running for 8.734)
+2023-10-28T22:35:54.096-05:00  INFO 15600 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-28T22:35:54.096-05:00  INFO 15600 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-10-28T22:35:54.097-05:00  INFO 15600 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-10-28T23:12:28.490-05:00  INFO 15600 --- [RMI TCP Connection(46)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2023-10-28T23:12:28.510-05:00  INFO 15600 --- [RMI TCP Connection(46)-127.0.0.1] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-10-28T23:12:28.513-05:00  INFO 15600 --- [RMI TCP Connection(46)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-10-28T23:12:28.538-05:00  INFO 15600 --- [RMI TCP Connection(46)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-10-28T23:12:28.544-05:00  INFO 15600 --- [RMI TCP Connection(46)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-10-28T23:12:28.551-05:00  INFO 15600 --- [RMI TCP Connection(46)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

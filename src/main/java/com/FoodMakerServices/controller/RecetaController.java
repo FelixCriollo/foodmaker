@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.FoodMakerServices.entity.Receta;
@@ -28,6 +29,29 @@ public class RecetaController {
 	@GetMapping("/recetas")
 	public List<Receta> allRecetas(){
 		return recetaService.getAll();
+	}
+	
+	@PostMapping("/añadirReceta")
+	@ResponseBody
+	public Receta addReceta(@RequestBody Receta receta) {
+		return recetaService.addReceta(receta);
+	}
+	
+	@PostMapping("/actualizarReceta")
+	@ResponseBody
+	public Receta updateReceta(@RequestBody Receta receta) {
+		return recetaService.updateReceta(receta);
+	}
+	
+	@PostMapping("/eliminarReceta")
+	@ResponseBody
+	public String deleteReceta(@RequestBody Receta receta) {
+		boolean isDelete = recetaService.deleteReceta(receta);
+		if(isDelete) {
+			return "Se ha eliminado con éxtio la receta " + receta.getNombre();
+		}else {
+			return "No se ha podido eliminar la receta " + receta.getNombre();		
+		}
 	}
 	
 	@PostMapping("/receta/disponibilidad")
