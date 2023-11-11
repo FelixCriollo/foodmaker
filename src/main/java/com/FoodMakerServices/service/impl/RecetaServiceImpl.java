@@ -42,8 +42,23 @@ public class RecetaServiceImpl implements RecetaService {
 		return null;
 	}
 
+	@Override
+	public List<Receta> filtrarPorTiempo(int tiempopreparacion) {
+		return repo.findByTiempopreparacionLessThanEqual(tiempopreparacion);
+	}
+
+	@Override
+	public List<Receta> filtrarPorCategoria(int idcategoria) {
+		return repo.findByIdcategoria(idcategoria);
+	}
+
+	@Override
+	public List<Receta> filtrarPorTiempoyCategoria(int tiempopreparacion, int idcategoria) {
+		return repo.findByTiempopreparacionLessThanEqualAndIdcategoria(tiempopreparacion,idcategoria);
+	}
+
 	public Receta updateReceta(Receta receta) {		
-		Optional<Receta> recetaExist = repo.findById(Integer.toString(receta.getIdreceta()));
+		Optional<Receta> recetaExist = repo.findById(receta.getIdreceta());
 		
 		if(!recetaExist.isPresent()) {			
 			throw new RuntimeException("La receta " + receta.getNombre() + " no existe");

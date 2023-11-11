@@ -13,4 +13,8 @@ public interface RecetaService {
 	public boolean deleteReceta(Receta receta);
 	public List<Receta> getAll();
 	public List<AvailableRS> getAvailabilities(AvailableRQ aval, Usuario user);
+
+	public List<Receta> filtrarPorTiempo(int tiempopreparacion);
+	public List<Receta> filtrarPorCategoria(int idcategoria);
+	public List<Receta> filtrarPorTiempoyCategoria(int tiempopreparacion,int idcategoria);
 }
