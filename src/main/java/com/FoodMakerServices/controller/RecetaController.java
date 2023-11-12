@@ -12,11 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.FoodMakerServices.entity.DetalleReceta;
 import com.FoodMakerServices.entity.Ingrediente;
@@ -155,5 +151,17 @@ public class RecetaController {
         JsonNode jsonNode = leerJsonDesdeArchivo(rutaAbsoluta);
         
         return jsonNode;
+	}
+	@GetMapping("recetat/{tiempopreparacion}")
+	public List<Receta> filtrarRecetaPorTiempo(@PathVariable int tiempopreparacion){
+		return recetaService.filtrarPorTiempo(tiempopreparacion);
+	}
+	@GetMapping("recetac/{idcategoria}")
+	public List<Receta> filtrarRecetaPorCategoria(@PathVariable int idcategoria){
+		return  recetaService.filtrarPorCategoria(idcategoria);
+	}
+	@GetMapping("recetaf")
+	public List<Receta> filtrarRecetaPorTiempoyCategoria(@RequestParam int tiempopreparacion,@RequestParam int idcategoria){
+		return  recetaService.filtrarPorTiempoyCategoria(tiempopreparacion,idcategoria);
 	}
 }

@@ -1,8 +1,6 @@
 package com.FoodMakerServices.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
@@ -10,6 +8,7 @@ import lombok.Data;
 @Data
 public class Ingrediente {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idingrediente;
 	private String nombre;
 	private String descripcion;

@@ -12,4 +12,7 @@ public interface RecetaService {
 	public Receta updateReceta(Receta receta);
 	public boolean deleteReceta(Receta receta);
 	public List<Receta> getAll();
+	public List<Receta> filtrarPorTiempo(int tiempopreparacion);
+	public List<Receta> filtrarPorCategoria(int idcategoria);
+	public List<Receta> filtrarPorTiempoyCategoria(int tiempopreparacion,int idcategoria);
 }
