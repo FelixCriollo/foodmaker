@@ -12,5 +12,4 @@ public interface RecetaService {
 	public Receta updateReceta(Receta receta);
 	public boolean deleteReceta(Receta receta);
 	public List<Receta> getAll();
-	public List<AvailableRS> getAvailabilities(AvailableRQ aval, Usuario user);
 }

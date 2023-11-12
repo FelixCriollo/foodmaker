@@ -18,6 +18,5 @@ public class LoginDao {
 	public void setContrasenia(String contrasenia) {
 		this.contrasenia = contrasenia;
 	}
-	
-	
+
 }
