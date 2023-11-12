@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.FoodMakerServices.entity.Usuario;
-import com.FoodMakerServices.entity.dao.LoginDao;
+import com.FoodMakerServices.entity.dto.LoginDao;
 import com.FoodMakerServices.service.UsuarioService;
 import org.springframework.web.server.ResponseStatusException;
 

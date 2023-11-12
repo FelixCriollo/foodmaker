@@ -54,6 +54,7 @@ public class WebSecurityConfig {
                     .requestMatchers("/").permitAll()
                     .requestMatchers(HttpMethod.POST, "/registrar").permitAll()
                     .requestMatchers(HttpMethod.POST, "/login").permitAll()
+                    .requestMatchers(HttpMethod.POST, "/anadirReceta").permitAll()
                     .anyRequest().authenticated()
                 )
                 .httpBasic(Customizer.withDefaults());
