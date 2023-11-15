@@ -87,11 +87,10 @@ public class RecetaController {
 			JsonNode ingredienteRefrigerador = GetIngredientesRefrigerador();		
 			List<Ingrediente> ingredientes = ingredienteService.getAll();
 			List<DetalleReceta> referencias = detalleRecetaService.getAll();
+			List<RecetaCompleta> recetasWithIngrediente = new ArrayList();
 			
 			// Recetas por minutos de preparación
-			List<Receta> recetas = recetaService.getAll().stream()
-				    .filter(receta -> receta.getTiempopreparacion() < minutos)
-				    .collect(Collectors.toList());
+			List<Receta> recetas = recetaService.filtrarPorTiempo(minutos);
 			
 			// Filtraremos las recetas por ingredientes
 		    for (Receta receta : recetas) {
@@ -110,6 +109,7 @@ public class RecetaController {
 		        }
 		        
 		        recetaCompleta.setIngredientes(ingredientesByRef);
+		        recetasWithIngrediente.add(recetaCompleta);
 		    }
 			
 			return recetasDisponibles;
@@ -118,7 +118,6 @@ public class RecetaController {
 			ex.printStackTrace();
 			return null;
 		}
-		
 	}
 	
 	// Helpers
