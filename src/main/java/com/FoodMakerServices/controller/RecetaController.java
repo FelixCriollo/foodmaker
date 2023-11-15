@@ -18,9 +18,10 @@ import com.FoodMakerServices.entity.DetalleReceta;
 import com.FoodMakerServices.entity.Ingrediente;
 import com.FoodMakerServices.entity.Receta;
 import com.FoodMakerServices.entity.Usuario;
-import com.FoodMakerServices.entity.dao.receta.AvailableRQ;
-import com.FoodMakerServices.entity.dao.receta.AvailableRS;
-import com.FoodMakerServices.entity.dao.receta.RecetaCompleta;
+import com.FoodMakerServices.entity.dto.receta.AgregarRecetaDto;
+import com.FoodMakerServices.entity.dto.receta.AvailableRQ;
+import com.FoodMakerServices.entity.dto.receta.AvailableRS;
+import com.FoodMakerServices.entity.dto.receta.RecetaCompleta;
 import com.FoodMakerServices.service.DetalleRecetaService;
 import com.FoodMakerServices.service.IngredienteService;
 import com.FoodMakerServices.service.RecetaService;
@@ -44,9 +45,9 @@ public class RecetaController {
 		return recetaService.getAll();
 	}
 	
-	@PostMapping("/añadirReceta")
+	@PostMapping("/anadirReceta")
 	@ResponseBody
-	public Receta addReceta(@RequestBody Receta receta) {
+	public Receta addReceta(@RequestBody AgregarRecetaDto receta) {
 		return recetaService.addReceta(receta);
 	}
 	
@@ -85,7 +86,7 @@ public class RecetaController {
 		try {
 			
 			JsonNode ingredienteRefrigerador = GetIngredientesRefrigerador();		
-			List<Ingrediente> ingredientes = ingredienteService.getAll();
+			//List<Ingrediente> ingredientes = ingredienteService.getAll();
 			List<DetalleReceta> referencias = detalleRecetaService.getAll();
 			List<RecetaCompleta> recetasWithIngrediente = new ArrayList();
 			
@@ -102,11 +103,11 @@ public class RecetaController {
 		        		.collect(Collectors.toList());
 		        
 		        List<Ingrediente> ingredientesByRef = new ArrayList();
-		        
+		        /*
 		        for (DetalleReceta dr : refByReceta) {
 		        	Ingrediente ingrediente = ingredientes.get(dr.getIdingrediente());
 		        	ingredientesByRef.add(ingrediente);
-		        }
+		        }*/
 		        
 		        recetaCompleta.setIngredientes(ingredientesByRef);
 		        recetasWithIngrediente.add(recetaCompleta);

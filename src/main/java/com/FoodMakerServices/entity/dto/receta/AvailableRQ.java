@@ -1,4 +1,4 @@
-package com.FoodMakerServices.entity.dao.receta;
+package com.FoodMakerServices.entity.dto.receta;
 
 public class AvailableRQ {
 	private int tiempodecocina;

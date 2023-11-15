@@ -10,7 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.FoodMakerServices.entity.Usuario;
-import com.FoodMakerServices.entity.dao.LoginDao;
+import com.FoodMakerServices.entity.dto.LoginDao;
 import com.FoodMakerServices.repository.UsuarioRepository;
 import com.FoodMakerServices.service.UsuarioService;
 

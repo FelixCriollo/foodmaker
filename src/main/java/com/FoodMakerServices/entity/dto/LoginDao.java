@@ -1,4 +1,4 @@
-package com.FoodMakerServices.entity.dao;
+package com.FoodMakerServices.entity.dto;
 
 
 

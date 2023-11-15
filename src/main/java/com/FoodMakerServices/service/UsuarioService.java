@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import com.FoodMakerServices.entity.Usuario;
-import com.FoodMakerServices.entity.dao.LoginDao;
+import com.FoodMakerServices.entity.dto.LoginDao;
 
 public interface UsuarioService {
 	public Usuario addUsuario(Usuario usuario);

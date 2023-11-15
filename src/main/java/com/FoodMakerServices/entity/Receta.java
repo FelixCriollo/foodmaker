@@ -15,8 +15,8 @@ public class Receta {
 	private String descripcioncorta;
 	private String instrucciones;
 	private int tiempopreparacion;
-	private int idimagen;
 	private int idcategoria;
+	private byte[] imagen;
 
 	@ManyToOne
 	@JoinColumn(name="idcategoria",insertable = false,updatable = false)

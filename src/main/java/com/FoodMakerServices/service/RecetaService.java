@@ -4,11 +4,12 @@ import java.util.List;
 
 import com.FoodMakerServices.entity.Receta;
 import com.FoodMakerServices.entity.Usuario;
-import com.FoodMakerServices.entity.dao.receta.AvailableRQ;
-import com.FoodMakerServices.entity.dao.receta.AvailableRS;
+import com.FoodMakerServices.entity.dto.receta.AgregarRecetaDto;
+import com.FoodMakerServices.entity.dto.receta.AvailableRQ;
+import com.FoodMakerServices.entity.dto.receta.AvailableRS;
 
 public interface RecetaService {
-	public Receta addReceta(Receta receta);
+	public Receta addReceta(AgregarRecetaDto receta);
 	public Receta updateReceta(Receta receta);
 	public boolean deleteReceta(Receta receta);
 	public List<Receta> getAll();
