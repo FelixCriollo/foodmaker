@@ -5,22 +5,21 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.FoodMakerServices.entity.Usuario;
-import com.FoodMakerServices.entity.dto.LoginDao;
+import com.FoodMakerServices.entity.dto.LoginDto;
 import com.FoodMakerServices.repository.UsuarioRepository;
 import com.FoodMakerServices.service.UsuarioService;
 
+import lombok.AllArgsConstructor;
+
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
-
 	@Autowired
 	UsuarioRepository repo;
 	
-	@Autowired
 	PasswordEncoder encoder;
 	
 	public Usuario addUsuario(Usuario usuario) {
@@ -37,7 +36,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 	}
 
 	@Override
-	public Usuario login(LoginDao login) {
+	public Usuario login(LoginDto login) {
 		Usuario user = null;
 		
 		for (Usuario u : repo.findAll()) {
@@ -53,7 +52,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 	public Usuario getByCorreo(String correo) {
 		Usuario user = null;
 		
-		user = repo.findByCorreo(correo);
+		user = repo.findOneByCorreo(correo).orElse(user);
 		
 		return user;
 	}

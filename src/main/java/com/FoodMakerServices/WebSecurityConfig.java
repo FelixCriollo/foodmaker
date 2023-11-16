@@ -6,14 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.header.writers.ReferrerPolicyHeaderWriter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -22,12 +25,19 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.FoodMakerServices.entity.Usuario;
+import com.FoodMakerServices.security.JWTAuthorizationFilter;
+import com.FoodMakerServices.security.JWTAuthtenticationFilter;
+import com.FoodMakerServices.security.UserDetailsServiceImplJwt;
+
+import lombok.AllArgsConstructor;
 
 @Configuration
 public class WebSecurityConfig {
 	
 	@Autowired
-	private UserDetailsService userDetailsService;
+	private UserDetailsServiceImplJwt userDetailsService;
+	@Autowired
+	private JWTAuthorizationFilter jwtAuthorizationFilter;
 
     @Bean
     PasswordEncoder encoder() {
@@ -35,30 +45,30 @@ public class WebSecurityConfig {
     };
     
     @Bean
-    AuthenticationProvider authenticationProvider() {
-    	DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+    SecurityFilterChain filterChain(HttpSecurity http, AuthenticationManager authManager) throws Exception {
+    	JWTAuthtenticationFilter JWTAuthtenticationFilter = new JWTAuthtenticationFilter();
+    	JWTAuthtenticationFilter.setAuthenticationManager(authManager);
+    	JWTAuthtenticationFilter.setFilterProcessesUrl("/login");
     	
-    	provider.setUserDetailsService(userDetailsService);
-    	provider.setPasswordEncoder(encoder());
-    	
-    	return provider;
-    }
-
-    @Bean
-    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues()))
-                //.cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues())
-                .authorizeHttpRequests((authz) -> authz
+                /*.authorizeHttpRequests((authz) -> authz
                     .requestMatchers("/").permitAll()
                     .requestMatchers(HttpMethod.POST, "/registrar").permitAll()
                     .requestMatchers(HttpMethod.POST, "/login").permitAll()
                     .requestMatchers(HttpMethod.POST, "/anadirReceta").permitAll()
                     .anyRequest().authenticated()
-                )
-                .httpBasic(Customizer.withDefaults());
+                )*/
+                .addFilter(JWTAuthtenticationFilter)
+                .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
+    }
+    
+    @Bean
+    AuthenticationManager authManager(HttpSecurity http) throws Exception {
+		return http.getSharedObject(AuthenticationManagerBuilder.class)
+				.userDetailsService((UserDetailsService) userDetailsService).passwordEncoder(encoder()).and().build();
     }
     
     @Bean
@@ -70,10 +80,4 @@ public class WebSecurityConfig {
 			}
 		};
 	}
-
-    @Bean
-    Usuario usuario() {
-        return new Usuario();
-    }
-
 }

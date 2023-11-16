@@ -10,13 +10,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.FoodMakerServices.entity.Usuario;
-import com.FoodMakerServices.entity.dto.LoginDao;
+import com.FoodMakerServices.entity.dto.LoginDto;
 import com.FoodMakerServices.service.UsuarioService;
+
+import lombok.AllArgsConstructor;
+
 import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 public class UsuarioController {
-	
 	@Autowired
 	UsuarioService usuarioService;
 	
@@ -30,10 +32,10 @@ public class UsuarioController {
 	public Usuario addUsuario(@RequestBody Usuario usuario) {
 		return usuarioService.addUsuario(usuario);
 	}
-	
+	/*
 	@PostMapping(value = "/login")
 	@ResponseBody
-	public Usuario login(@RequestBody LoginDao login) {
+	public Usuario login(@RequestBody LoginDto login) {
 		Usuario usuarioExistente = usuarioService.login(login);
 		if(usuarioExistente != null){
 			return usuarioExistente;
@@ -41,5 +43,5 @@ public class UsuarioController {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND,"No se encontró el usuario");
 		}
 	}
-	
+	*/
 }

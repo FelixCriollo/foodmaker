@@ -32,8 +32,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @RestController
 public class RecetaController {
 	@Autowired
-	UsuarioService usuarioService;
-	@Autowired
 	RecetaService recetaService;
 	@Autowired
 	IngredienteService ingredienteService;
@@ -75,7 +73,7 @@ public class RecetaController {
 	            .getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
 		auth.getName();
-		Usuario user = usuarioService.getByNombre(userDetail.getUsername());
+		Usuario user = null;//usuarioService.getByNombre(userDetail.getUsername());
 		
 		return null;
 	}
