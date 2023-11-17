@@ -11,6 +11,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.FoodMakerServices.entity.dto.LoginDto;
+import com.FoodMakerServices.entity.dto.SuccessLoginDto;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -42,7 +43,15 @@ public class JWTAuthtenticationFilter extends UsernamePasswordAuthenticationFilt
 		UserDetailsImplJwt userD = (UserDetailsImplJwt) authResult.getPrincipal();
 		String token = TokenUtils.CreateToken(userD.getName(), userD.getUsername());
 		
+		SuccessLoginDto sLogin = new SuccessLoginDto();
+		sLogin.setCorreo(userD.getUsername());
+		sLogin.setNombre(userD.getName());
+		sLogin.setToken(token);
+		ObjectMapper objectMapper = new ObjectMapper();
+		String json = objectMapper.writeValueAsString(sLogin);
+		
 		response.addHeader("Authorization", "bearer " +token);
+		response.getWriter().write(json);
 		response.flushBuffer();
 		
 		super.successfulAuthentication(request, response, chain, authResult);

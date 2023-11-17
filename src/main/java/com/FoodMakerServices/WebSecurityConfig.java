@@ -70,14 +70,4 @@ public class WebSecurityConfig {
 		return http.getSharedObject(AuthenticationManagerBuilder.class)
 				.userDetailsService((UserDetailsService) userDetailsService).passwordEncoder(encoder()).and().build();
     }
-    
-    @Bean
-	WebMvcConfigurer corsConfigurer() {
-		return new WebMvcConfigurer() {
-			@Override
-			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/**").allowedOrigins("http://localhost:5500").allowedMethods("*").allowedHeaders("*");
-			}
-		};
-	}
 }

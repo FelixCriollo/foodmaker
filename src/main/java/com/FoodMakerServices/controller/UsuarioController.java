@@ -32,16 +32,12 @@ public class UsuarioController {
 	public Usuario addUsuario(@RequestBody Usuario usuario) {
 		return usuarioService.addUsuario(usuario);
 	}
-	/*
+	
 	@PostMapping(value = "/login")
 	@ResponseBody
 	public Usuario login(@RequestBody LoginDto login) {
-		Usuario usuarioExistente = usuarioService.login(login);
-		if(usuarioExistente != null){
-			return usuarioExistente;
-		}else{
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND,"No se encontró el usuario");
-		}
+		System.out.println("chau mundo");
+		return null;
 	}
-	*/
+	
 }

@@ -20,6 +20,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@Autowired
 	UsuarioRepository repo;
 	
+	@Autowired
 	PasswordEncoder encoder;
 	
 	public Usuario addUsuario(Usuario usuario) {
