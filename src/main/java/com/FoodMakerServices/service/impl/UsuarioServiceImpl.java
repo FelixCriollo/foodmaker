@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import com.FoodMakerServices.entity.Usuario;
 import com.FoodMakerServices.entity.dto.LoginDao;
 import com.FoodMakerServices.repository.UsuarioRepository;
 import com.FoodMakerServices.service.UsuarioService;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
@@ -35,6 +37,30 @@ public class UsuarioServiceImpl implements UsuarioService {
 		// TODO Auto-generated method stub
 		return (List<Usuario>) repo.findAll();
 	}
+
+	@Override
+	public Usuario obtenerUsuario(int idusuario) {
+		return repo.findById(String.valueOf(idusuario)).orElse(null);
+	}
+
+	@Override
+	public Usuario actualizarUsuario(Usuario objUsuario) {
+		Optional<Usuario> usuarioOptional = repo.findById(String.valueOf(objUsuario.getIdusuario()));
+		Usuario existingUsuario = null;
+		if (usuarioOptional.isPresent()) {
+			existingUsuario = usuarioOptional.get();
+			existingUsuario.setNombre(objUsuario.getNombre());
+			existingUsuario.setCorreo(objUsuario.getCorreo());
+			existingUsuario.setContrasenia(encoder.encode(objUsuario.getContrasenia()));
+
+
+		return repo.save(existingUsuario);
+		}else{
+
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "El usuario con ID " + objUsuario.getIdusuario() + " no existe.");
+		}
+	}
+
 
 	@Override
 	public Usuario login(LoginDao login) {

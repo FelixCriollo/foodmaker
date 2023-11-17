@@ -2,12 +2,11 @@ package com.FoodMakerServices.controller;
 
 import java.util.List;
 
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import com.FoodMakerServices.entity.Usuario;
 import com.FoodMakerServices.entity.dto.LoginDao;
@@ -15,6 +14,7 @@ import com.FoodMakerServices.service.UsuarioService;
 import org.springframework.web.server.ResponseStatusException;
 
 @RestController
+@CrossOrigin(origins = {"http://localhost:4200/"})
 public class UsuarioController {
 	
 	@Autowired
@@ -40,6 +40,21 @@ public class UsuarioController {
 		}else{
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND,"No se encontró el usuario");
 		}
+	}
+	@GetMapping("usuarios/{idusuario}")
+	public Usuario obtenerUsuario(@PathVariable int idusuario){
+		return usuarioService.obtenerUsuario(idusuario);
+	}
+	@PutMapping("usuarios/{idusuario}")
+	public ResponseEntity<Usuario> actualizarUsuario(@PathVariable int idusuario,@RequestBody Usuario usuario){
+		usuario.setIdusuario(idusuario);
+		Usuario usuarioActualizado = usuarioService.actualizarUsuario(usuario);
+		if(usuarioActualizado !=null){
+			return ResponseEntity.ok(usuarioActualizado);
+		}else{
+			return ResponseEntity.notFound().build();
+		}
+
 	}
 	
 }

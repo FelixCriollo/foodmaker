@@ -13,4 +13,6 @@ public interface UsuarioService {
 	public Usuario getByNombre(String nombre);
 	public Usuario login(LoginDao login) throws UsernameNotFoundException;
 	public List<Usuario> getAll();
+	public Usuario obtenerUsuario(int idusuario);
+	public Usuario actualizarUsuario(Usuario objUsuario);
 }
