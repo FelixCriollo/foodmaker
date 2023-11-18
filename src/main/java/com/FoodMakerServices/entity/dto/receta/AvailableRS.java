@@ -10,7 +10,7 @@ public class AvailableRS {
 	private String nombre;
 	private String descripcioncorta;
 	private List<Ingrediente> ingredientes;
-	private String imagenurl;
+	private byte[] imagen;
 	
 	
 	public int getOrden() {
@@ -43,10 +43,10 @@ public class AvailableRS {
 	public void setIngredientes(List<Ingrediente> ingredientes) {
 		this.ingredientes = ingredientes;
 	}
-	public String getImagenurl() {
-		return imagenurl;
+	public byte[] getImagen() {
+		return imagen;
 	}
-	public void setImagenurl(String imagenurl) {
-		this.imagenurl = imagenurl;
+	public void setImagen(byte[] imagen) {
+		this.imagen = imagen;
 	}
 }

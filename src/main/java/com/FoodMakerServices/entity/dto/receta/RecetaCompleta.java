@@ -11,4 +11,5 @@ import lombok.Data;
 public class RecetaCompleta {
 	Receta receta;
 	List<Ingrediente> ingredientes;
+	int cantidadCoincidencias;
 }

@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -75,16 +77,12 @@ public class RecetaController {
 		auth.getName();
 		Usuario user = null;//usuarioService.getByNombre(userDetail.getUsername());
 		
-		return null;
+		return GetRecetasDisponibles(aval.getTiempodecocina());
 	}
 	
 	public List<AvailableRS> GetRecetasDisponibles(int minutos){
-		List<AvailableRS> recetasDisponibles = new ArrayList();
-		
-		try {
-			
-			JsonNode ingredienteRefrigerador = GetIngredientesRefrigerador();		
-			//List<Ingrediente> ingredientes = ingredienteService.getAll();
+		try {	
+			List<Ingrediente> ingredientes = ingredienteService.getAll();
 			List<DetalleReceta> referencias = detalleRecetaService.getAll();
 			List<RecetaCompleta> recetasWithIngrediente = new ArrayList();
 			
@@ -101,16 +99,18 @@ public class RecetaController {
 		        		.collect(Collectors.toList());
 		        
 		        List<Ingrediente> ingredientesByRef = new ArrayList();
-		        /*
+		        
 		        for (DetalleReceta dr : refByReceta) {
 		        	Ingrediente ingrediente = ingredientes.get(dr.getIdingrediente());
 		        	ingredientesByRef.add(ingrediente);
-		        }*/
+		        }
 		        
 		        recetaCompleta.setIngredientes(ingredientesByRef);
 		        recetasWithIngrediente.add(recetaCompleta);
 		    }
-			
+		    
+		    List<AvailableRS> recetasDisponibles = ConstruirRecetasDisponibles(recetasWithIngrediente);
+		    
 			return recetasDisponibles;
 			
 		}catch(Exception ex) {
@@ -120,7 +120,7 @@ public class RecetaController {
 	}
 	
 	// Helpers
-	private static JsonNode leerJsonDesdeArchivo(String rutaArchivo) {
+	public static JsonNode leerJsonDesdeArchivo(String rutaArchivo) {
         try {
             // Crea un objeto ObjectMapper
             ObjectMapper objectMapper = new ObjectMapper();
@@ -133,7 +133,7 @@ public class RecetaController {
         }
     }
 	
-	private static String obtenerRutaAbsoluta(String rutaRelativa) {
+	public static String obtenerRutaAbsoluta(String rutaRelativa) {
         // Obtiene el directorio actual como ruta base
         Path directorioActual = Paths.get(System.getProperty("user.dir"));
 
@@ -143,13 +143,68 @@ public class RecetaController {
         return rutaAbsoluta.toString();
     }
 	
-	public JsonNode GetIngredientesRefrigerador() {
+	public static JsonNode GetIngredientesRefrigerador() {
 		String rutaRelativa = "/foodmaker/src/main/json/refrigerador.json";
 		String rutaAbsoluta = obtenerRutaAbsoluta(rutaRelativa);
         JsonNode jsonNode = leerJsonDesdeArchivo(rutaAbsoluta);
         
         return jsonNode;
 	}
+	
+	public static List<AvailableRS> ConstruirRecetasDisponibles(List<RecetaCompleta> recetas){
+		JsonNode ingredienteRefrigerador = GetIngredientesRefrigerador();
+		
+		List<RecetaCompleta> recetasOrdenadas = new ArrayList();
+		
+		for (RecetaCompleta receta : recetas) {
+            int coincidencias = contarCoincidencias(receta.getIngredientes(), ingredienteRefrigerador);
+            receta.setCantidadCoincidencias(coincidencias);
+            recetasOrdenadas.add(receta);
+        }
+		
+		Collections.sort(recetasOrdenadas, Comparator.comparingInt(RecetaCompleta::getCantidadCoincidencias).reversed());
+		
+		List<AvailableRS> disponibilidad = ConstruirAvailableList(recetasOrdenadas);
+		
+		return disponibilidad;
+	}
+	
+	public static int contarCoincidencias(List<Ingrediente> ingredientesReceta, JsonNode ingredienteRefrigerador) {
+	    int coincidencias = 0;
+
+	    for (Ingrediente ingredienteReceta : ingredientesReceta) {
+	        String nombreReceta = ingredienteReceta.getNombre();
+
+	        for (JsonNode ingredienteJson : ingredienteRefrigerador) {
+	            String nombreJson = ingredienteJson.get("nombre").asText();
+
+	            if (nombreReceta.equals(nombreJson)) {
+	                coincidencias++;
+	            }
+	        }
+	    }
+
+	    return coincidencias;
+	}
+	
+	public static List<AvailableRS> ConstruirAvailableList(List<RecetaCompleta> recetas){
+		
+		List<AvailableRS> disponibilidad = new ArrayList();
+		
+		for (RecetaCompleta receta : recetas) {
+			AvailableRS dispo = new AvailableRS();
+			
+			dispo.setDuracion(receta.getReceta().getTiempopreparacion());
+			dispo.setDescripcioncorta(receta.getReceta().getDescripcioncorta());
+			dispo.setIngredientes(receta.getIngredientes());
+			dispo.setImagen(receta.getReceta().getImagen());
+			
+			disponibilidad.add(dispo);
+		}
+		
+		return disponibilidad;
+	}
+	
 	@GetMapping("recetat/{tiempopreparacion}")
 	public List<Receta> filtrarRecetaPorTiempo(@PathVariable int tiempopreparacion){
 		return recetaService.filtrarPorTiempo(tiempopreparacion);
