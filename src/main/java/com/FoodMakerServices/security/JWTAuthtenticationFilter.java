@@ -51,9 +51,10 @@ public class JWTAuthtenticationFilter extends UsernamePasswordAuthenticationFilt
 		String json = objectMapper.writeValueAsString(sLogin);
 		
 		response.addHeader("Authorization", "bearer " +token);
+		response.addHeader("Content-Type", "application/json");
 		response.getWriter().write(json);
 		response.flushBuffer();
 		
-		super.successfulAuthentication(request, response, chain, authResult);
+		//super.successfulAuthentication(request, response, chain, authResult);
 	}
 }

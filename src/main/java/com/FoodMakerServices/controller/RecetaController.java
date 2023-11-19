@@ -70,13 +70,6 @@ public class RecetaController {
 	
 	@PostMapping("/receta/disponibilidad")
 	public List<AvailableRS> allAval(@RequestBody AvailableRQ aval){
-		Authentication auth = SecurityContextHolder
-	            .getContext()
-	            .getAuthentication();
-		UserDetails userDetail = (UserDetails) auth.getPrincipal();
-		auth.getName();
-		Usuario user = null;//usuarioService.getByNombre(userDetail.getUsername());
-		
 		return GetRecetasDisponibles(aval.getTiempodecocina());
 	}
 	

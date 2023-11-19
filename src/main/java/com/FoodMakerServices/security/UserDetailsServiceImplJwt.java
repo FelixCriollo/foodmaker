@@ -3,6 +3,7 @@ package com.FoodMakerServices.security;
 
 import java.util.Collection;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -13,10 +14,9 @@ import com.FoodMakerServices.service.impl.UsuarioServiceImpl;
 
 import lombok.AllArgsConstructor;
 
-@Service
-@AllArgsConstructor																																																																																								
+@Service																																																																																						
 public class UserDetailsServiceImplJwt implements UserDetailsService {
-	
+	@Autowired
 	private UsuarioServiceImpl UsuarioService;
 
 	@Override
