@@ -59,7 +59,8 @@ public class RecetaController {
 	
 	@PostMapping("/eliminarReceta")
 	@ResponseBody
-	public String deleteReceta(@RequestBody Receta receta) {
+	public String deleteReceta(@RequestBody int idReceta) {
+		Receta receta = recetaService.BuscarReceta(idReceta);
 		boolean isDelete = recetaService.deleteReceta(receta);
 		if(isDelete) {
 			return "Se ha eliminado con éxtio la receta " + receta.getNombre();
@@ -70,12 +71,12 @@ public class RecetaController {
 	
 	@PostMapping("/receta/disponibilidad")
 	public List<AvailableRS> allAval(@RequestBody AvailableRQ aval){
-		Authentication auth = SecurityContextHolder
+		/*Authentication auth = SecurityContextHolder
 	            .getContext()
 	            .getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
-		auth.getName();
-		Usuario user = null;//usuarioService.getByNombre(userDetail.getUsername());
+		auth.getName()
+		Usuario user = null;//usuarioService.getByNombre(userDetail.getUsername());*/
 		
 		return GetRecetasDisponibles(aval.getTiempodecocina());
 	}
