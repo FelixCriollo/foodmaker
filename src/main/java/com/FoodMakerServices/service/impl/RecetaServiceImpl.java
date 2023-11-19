@@ -1,9 +1,5 @@
 package com.FoodMakerServices.service.impl;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
@@ -54,6 +50,17 @@ public class RecetaServiceImpl implements RecetaService {
 	@Override
 	public List<Receta> filtrarPorTiempoyCategoria(int tiempopreparacion, int idcategoria) {
 		return repo.findByTiempopreparacionLessThanEqualAndIdcategoria(tiempopreparacion,idcategoria);
+	}
+	
+	@Override
+	public Receta BuscarReceta(int idReceta) {
+		Receta receta = repo.getById(idReceta);
+		
+		if(receta == null) {			
+			throw new RuntimeException("La receta " + receta.getNombre() + " no existe");
+		}
+		
+		return receta;
 	}
 
 	public Receta updateReceta(Receta receta) {		

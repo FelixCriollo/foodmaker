@@ -59,7 +59,8 @@ public class RecetaController {
 	
 	@PostMapping("/eliminarReceta")
 	@ResponseBody
-	public String deleteReceta(@RequestBody Receta receta) {
+	public String deleteReceta(@RequestBody int idReceta) {
+		Receta receta = recetaService.BuscarReceta(idReceta);
 		boolean isDelete = recetaService.deleteReceta(receta);
 		if(isDelete) {
 			return "Se ha eliminado con éxtio la receta " + receta.getNombre();
