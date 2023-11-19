@@ -136,7 +136,7 @@ public class RecetaController {
 	
 	public static JsonNode GetIngredientesRefrigerador() {
 		String rutaRelativa = "/refrigerador.json";
-		String rutaAbsoluta = obtenerRutaAbsoluta(rutaRelativa);
+		String rutaAbsoluta = new File ("refrigerador.json").getAbsolutePath();
         JsonNode jsonNode = leerJsonDesdeArchivo(rutaAbsoluta);
         
         return jsonNode;

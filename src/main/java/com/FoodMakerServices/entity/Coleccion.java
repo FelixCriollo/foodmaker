@@ -15,4 +15,5 @@ public class Coleccion {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idcoleccion;
     private String nombre;
+    private int idusuario;
 }

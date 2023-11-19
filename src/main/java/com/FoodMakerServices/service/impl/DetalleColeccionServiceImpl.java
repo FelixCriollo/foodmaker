@@ -20,4 +20,17 @@ public class DetalleColeccionServiceImpl implements DetalleColeccionService {
 		return (List<DetalleColeccion>) repo.findAll();
 	}
 
+	@Override
+	public List<DetalleColeccion> getbyIdcoleccion(int coleccion) {
+		return repo.findByIdcoleccion(coleccion);
+	}
+
+	@Override
+	public void deleteByIdcoleccion(int coleccion) {
+		getbyIdcoleccion(coleccion).forEach(f -> {
+			repo.delete(f);
+		});
+		
+	}
+
 }

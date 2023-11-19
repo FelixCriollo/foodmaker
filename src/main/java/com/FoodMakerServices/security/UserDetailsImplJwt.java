@@ -60,5 +60,9 @@ public class UserDetailsImplJwt implements UserDetails {
 	{
 		return user.getNombre();
 	}
+	
+	public int getIdUser() {
+		return user.getIdusuario();
+	}
 
 }

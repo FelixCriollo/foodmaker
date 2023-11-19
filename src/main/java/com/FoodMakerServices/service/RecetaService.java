@@ -15,6 +15,8 @@ public interface RecetaService {
 	public List<Receta> getAll();
 	public List<Receta> filtrarPorTiempo(int tiempopreparacion);
 	public List<Receta> filtrarPorCategoria(int idcategoria);
+	public List<Receta> getByColeccion(int idcoleccion);
 	public Receta BuscarReceta(int idReceta);
 	public List<Receta> filtrarPorTiempoyCategoria(int tiempopreparacion,int idcategoria);
+	
 }
