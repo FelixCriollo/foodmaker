@@ -188,6 +188,7 @@ public class RecetaController {
 		for (RecetaCompleta receta : recetas) {
 			AvailableRS dispo = new AvailableRS();
 			
+			dispo.setNombre(receta.getReceta().getNombre());
 			dispo.setDuracion(receta.getReceta().getTiempopreparacion());
 			dispo.setDescripcioncorta(receta.getReceta().getDescripcioncorta());
 			dispo.setIngredientes(receta.getIngredientes());
