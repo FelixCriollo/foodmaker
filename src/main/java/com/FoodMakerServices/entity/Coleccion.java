@@ -8,11 +8,11 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table (name = "categoria")
+@Table (name = "coleccion")
 @Data
-public class Categoria {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idcategoria;
+public class Coleccion {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int idcoleccion;
     private String nombre;
 }

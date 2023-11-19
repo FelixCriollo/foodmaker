@@ -10,6 +10,7 @@ import com.FoodMakerServices.repository.DetalleRecetaRepository;
 import com.FoodMakerServices.service.DetalleRecetaService;
 @Service
 public class DetalleRecetaServiceImpl implements DetalleRecetaService {
+	
 	@Autowired
 	DetalleRecetaRepository repo;
 	

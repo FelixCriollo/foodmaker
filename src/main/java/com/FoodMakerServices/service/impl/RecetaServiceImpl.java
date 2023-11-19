@@ -17,7 +17,11 @@ public class RecetaServiceImpl implements RecetaService {
 	RecetaRepository repo;
 	
 	public Receta addReceta(AgregarRecetaDto receta) {
-		byte[] datosImagen = Base64.getDecoder().decode(receta.getImagen());
+		byte[] datosImagen = null;
+		
+		if(receta.getImagen() != null) {
+			datosImagen = Base64.getDecoder().decode(receta.getImagen());		
+		}
 
 		Receta r = new Receta();
 		r.setDescripcion(receta.getDescripcion());

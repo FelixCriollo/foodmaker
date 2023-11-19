@@ -8,11 +8,14 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table (name = "categoria")
+@Table (name = "detallecoleccion")
 @Data
-public class Categoria {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idcategoria;
-    private String nombre;
+public class DetalleColeccion {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int iddetallecoleccion;
+    private int idreceta;
+    private int idcoleccion;
+    private int idusuario;
+    
 }

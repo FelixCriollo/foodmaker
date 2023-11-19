@@ -1,6 +1,6 @@
 package com.FoodMakerServices.entity.dto.receta;
 
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.lang.Nullable;
 
 import lombok.Data;
 
@@ -12,5 +12,6 @@ public class AgregarRecetaDto {
 	private String instrucciones;
 	private int tiempopreparacion;
 	private int idcategoria;
-	private String imagen;
+	@Nullable
+	private byte[] imagen;
 }

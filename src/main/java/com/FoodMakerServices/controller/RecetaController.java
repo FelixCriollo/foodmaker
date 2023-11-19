@@ -11,15 +11,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import com.FoodMakerServices.entity.DetalleReceta;
 import com.FoodMakerServices.entity.Ingrediente;
 import com.FoodMakerServices.entity.Receta;
-import com.FoodMakerServices.entity.Usuario;
 import com.FoodMakerServices.entity.dto.receta.AgregarRecetaDto;
 import com.FoodMakerServices.entity.dto.receta.AvailableRQ;
 import com.FoodMakerServices.entity.dto.receta.AvailableRS;
@@ -27,7 +23,6 @@ import com.FoodMakerServices.entity.dto.receta.RecetaCompleta;
 import com.FoodMakerServices.service.DetalleRecetaService;
 import com.FoodMakerServices.service.IngredienteService;
 import com.FoodMakerServices.service.RecetaService;
-import com.FoodMakerServices.service.UsuarioService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -57,9 +52,9 @@ public class RecetaController {
 		return recetaService.updateReceta(receta);
 	}
 	
-	@PostMapping("/eliminarReceta")
+	@PostMapping("/eliminarReceta/{idReceta}")
 	@ResponseBody
-	public String deleteReceta(@RequestBody int idReceta) {
+	public String deleteReceta(@PathVariable int idReceta) {
 		Receta receta = recetaService.BuscarReceta(idReceta);
 		boolean isDelete = recetaService.deleteReceta(receta);
 		if(isDelete) {
@@ -127,18 +122,20 @@ public class RecetaController {
         }
     }
 	
-	public static String obtenerRutaAbsoluta(String rutaRelativa) {
-        // Obtiene el directorio actual como ruta base
-        Path directorioActual = Paths.get(System.getProperty("user.dir"));
-
-        // Resuelve la ruta relativa contra el directorio actual para obtener la ruta absoluta
-        Path rutaAbsoluta = directorioActual.resolve(rutaRelativa);
-
+	 public static String obtenerRutaAbsoluta(String rutaRelativa) {
+        //Obtiene la ruta absoluta del directorio actual
+        Path rutaBase = Paths.get(System.getProperty("user.dir"));
+        
+        // Combina la ruta base con la ruta relativa
+        Path rutaAbsoluta = rutaBase.resolve(Paths.get(rutaRelativa));
+        
+        // Convierte la ruta a formato de cadena y la retorna
         return rutaAbsoluta.toString();
     }
+
 	
 	public static JsonNode GetIngredientesRefrigerador() {
-		String rutaRelativa = "/foodmaker/src/main/json/refrigerador.json";
+		String rutaRelativa = "/refrigerador.json";
 		String rutaAbsoluta = obtenerRutaAbsoluta(rutaRelativa);
         JsonNode jsonNode = leerJsonDesdeArchivo(rutaAbsoluta);
         
