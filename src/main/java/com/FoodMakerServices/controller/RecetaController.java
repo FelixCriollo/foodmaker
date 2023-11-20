@@ -52,6 +52,29 @@ public class RecetaController {
 		return recetaService.updateReceta(receta);
 	}
 	
+	@GetMapping("/buscarReceta/{idReceta}")
+    public RecetaCompleta buscarReceta(@PathVariable int idReceta){
+        RecetaCompleta recetaCompleta = new RecetaCompleta();
+
+        Receta receta = recetaService.BuscarReceta(idReceta);
+        List<Ingrediente> ingredientes = ingredienteService.getAll();
+        List<DetalleReceta> detalleReceta = detalleRecetaService.getAll().stream()
+                                                                .filter(d -> d.getIdreceta() == receta.getIdreceta())
+                                                                .collect(Collectors.toList());
+        
+        List<Ingrediente> ingredienteByReceta = new ArrayList();
+        
+        for (DetalleReceta dr : detalleReceta) {
+            Ingrediente ingrediente = ingredientes.get(dr.getIdingrediente());
+            ingredienteByReceta.add(ingrediente);
+        }
+
+        recetaCompleta.setReceta(receta);
+        recetaCompleta.setIngredientes(ingredienteByReceta);
+
+        return recetaCompleta;
+    }
+	
 	@PostMapping("/eliminarReceta/{idReceta}")
 	@ResponseBody
 	public String deleteReceta(@PathVariable int idReceta) {
