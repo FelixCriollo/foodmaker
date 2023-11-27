@@ -52,8 +52,10 @@ public class RecetaController {
 		return recetaService.updateReceta(receta);
 	}
 	
-	@GetMapping("/buscarReceta/{id}")
-    public RecetaCompleta buscarReceta(@PathVariable int id){
+
+	@GetMapping("/buscarReceta/{idReceta}")
+	@ResponseBody
+    public RecetaCompleta buscarReceta(@PathVariable int idReceta){
         RecetaCompleta recetaCompleta = new RecetaCompleta();
 
         Receta receta = recetaService.BuscarReceta(id);
@@ -71,7 +73,6 @@ public class RecetaController {
 
         recetaCompleta.setReceta(receta);
         recetaCompleta.setIngredientes(ingredienteByReceta);
-        System.out.println(recetaCompleta.toString());
         return recetaCompleta;
     }
 	
@@ -88,11 +89,11 @@ public class RecetaController {
 	}
 	
 	@PostMapping("/receta/disponibilidad")
-	public List<AvailableRS> allAval(@RequestBody AvailableRQ aval){
+	public List<RecetaCompleta> allAval(@RequestBody AvailableRQ aval){
 		return GetRecetasDisponibles(aval.getTiempodecocina());
 	}
 	
-	public List<AvailableRS> GetRecetasDisponibles(int minutos){
+	public List<RecetaCompleta> GetRecetasDisponibles(int minutos){
 		try {	
 			List<Ingrediente> ingredientes = ingredienteService.getAll();
 			List<DetalleReceta> referencias = detalleRecetaService.getAll();
@@ -121,7 +122,7 @@ public class RecetaController {
 		        recetasWithIngrediente.add(recetaCompleta);
 		    }
 		    
-		    List<AvailableRS> recetasDisponibles = ConstruirRecetasDisponibles(recetasWithIngrediente);
+		    List<RecetaCompleta> recetasDisponibles = ConstruirRecetasDisponibles(recetasWithIngrediente);
 		    
 			return recetasDisponibles;
 			
@@ -165,7 +166,7 @@ public class RecetaController {
         return jsonNode;
 	}
 	
-	public static List<AvailableRS> ConstruirRecetasDisponibles(List<RecetaCompleta> recetas){
+	public static List<RecetaCompleta> ConstruirRecetasDisponibles(List<RecetaCompleta> recetas){
 		JsonNode ingredienteRefrigerador = GetIngredientesRefrigerador();
 		
 		List<RecetaCompleta> recetasOrdenadas = new ArrayList();
@@ -178,9 +179,7 @@ public class RecetaController {
 		
 		Collections.sort(recetasOrdenadas, Comparator.comparingInt(RecetaCompleta::getCantidadCoincidencias).reversed());
 		
-		List<AvailableRS> disponibilidad = ConstruirAvailableList(recetasOrdenadas);
-		
-		return disponibilidad;
+		return recetasOrdenadas;
 	}
 	
 	public static int contarCoincidencias(List<Ingrediente> ingredientesReceta, JsonNode ingredienteRefrigerador) {
@@ -201,33 +200,40 @@ public class RecetaController {
 	    return coincidencias;
 	}
 	
-	public static List<AvailableRS> ConstruirAvailableList(List<RecetaCompleta> recetas){
-		
-		List<AvailableRS> disponibilidad = new ArrayList();
-		
-		for (RecetaCompleta receta : recetas) {
-			AvailableRS dispo = new AvailableRS();
-			
-			dispo.setNombre(receta.getReceta().getNombre());
-			dispo.setDuracion(receta.getReceta().getTiempopreparacion());
-			dispo.setDescripcioncorta(receta.getReceta().getDescripcioncorta());
-			dispo.setIngredientes(receta.getIngredientes());
-			dispo.setImagen(receta.getReceta().getImagen());
-			
-			disponibilidad.add(dispo);
-		}
-		
-		return disponibilidad;
-	}
-	
 	@GetMapping("recetat/{tiempopreparacion}")
 	public List<Receta> filtrarRecetaPorTiempo(@PathVariable int tiempopreparacion){
 		return recetaService.filtrarPorTiempo(tiempopreparacion);
 	}
+	
 	@GetMapping("recetac/{idcategoria}")
-	public List<Receta> filtrarRecetaPorCategoria(@PathVariable int idcategoria){
-		return  recetaService.filtrarPorCategoria(idcategoria);
+	public List<RecetaCompleta> filtrarRecetaPorCategoria(@PathVariable int idcategoria){
+		List<Receta> recetasByCategory = recetaService.filtrarPorCategoria(idcategoria);
+		List<RecetaCompleta> recetas = new ArrayList();
+		List<Ingrediente> ingredientes = ingredienteService.getAll();
+
+		for(Receta r : recetasByCategory) {
+			RecetaCompleta recetaCompleta = new RecetaCompleta();
+			
+			List<DetalleReceta> detalleReceta = detalleRecetaService.getAll().stream()
+                    .filter(d -> d.getIdreceta() == r.getIdreceta())
+                    .collect(Collectors.toList());
+			
+			List<Ingrediente> ingredienteByReceta = new ArrayList();
+			
+			for (DetalleReceta dr : detalleReceta) {
+	            Ingrediente ingrediente = ingredientes.get(dr.getIdingrediente());
+	            ingredienteByReceta.add(ingrediente);
+	        }
+			
+			recetaCompleta.setReceta(r);
+	        recetaCompleta.setIngredientes(ingredienteByReceta);
+			
+			recetas.add(recetaCompleta);
+		}
+		
+		return recetas;
 	}
+	
 	@GetMapping("recetaf")
 	public List<Receta> filtrarRecetaPorTiempoyCategoria(@RequestParam int tiempopreparacion,@RequestParam int idcategoria){
 		return  recetaService.filtrarPorTiempoyCategoria(tiempopreparacion,idcategoria);
