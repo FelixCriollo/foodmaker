@@ -2,10 +2,12 @@ package com.FoodMakerServices.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.lang.Collections;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Map;
@@ -17,7 +19,7 @@ public class TokenUtils {
 	private final static Long ACCESS_TOKEN_VALIDITY_SECONDS = 2_592_000L;
 	
 	public static String CreateToken(String nombre, String Email) {
-		long expirationTime = ACCESS_TOKEN_VALIDITY_SECONDS * 1000;
+		long expirationTime = ACCESS_TOKEN_VALIDITY_SECONDS * 1_000;
 		Date expirationDate = new Date(System.currentTimeMillis() + expirationTime);
 		
 		Map<String, Object> extra = new HashMap<>();
@@ -28,21 +30,24 @@ public class TokenUtils {
 				.setSubject(Email)
 				.setExpiration(expirationDate)
 				.addClaims(extra)
-				.signWith(Keys.hmacShaKeyFor(ACCESS_TOKEN_SECRET.getBytes()))
+				.signWith(SignatureAlgorithm.HS256, ACCESS_TOKEN_SECRET.getBytes())
 				.compact();
 	}
 	
 	public static UsernamePasswordAuthenticationToken getAuth(String token) {
 		try {
-			Claims claims = Jwts.parserBuilder()
+			Claims claims = Jwts
+					.parserBuilder()
 					.setSigningKey(ACCESS_TOKEN_SECRET.getBytes())
 					.build()
 					.parseClaimsJws(token)
 					.getBody();
 			
-			String email = claims.getSubject();
+			String email = claims.toString();
 			
-			return new UsernamePasswordAuthenticationToken(email, null);
+			System.out.println(claims);
+			
+			return new UsernamePasswordAuthenticationToken(email, null, new ArrayList<>());
 		
 		} catch (Exception e) {
 			return null;

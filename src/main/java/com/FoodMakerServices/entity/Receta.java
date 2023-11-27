@@ -1,11 +1,14 @@
 package com.FoodMakerServices.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
 @Table (name = "receta")
 @Data
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Receta {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
