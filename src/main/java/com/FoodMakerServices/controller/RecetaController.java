@@ -38,11 +38,20 @@ public class RecetaController {
 	public List<Receta> allRecetas(){
 		return recetaService.getAll();
 	}
-	
+
 	@PostMapping("/anadirReceta")
 	@ResponseBody
-	public Receta addReceta(@RequestBody AgregarRecetaDto receta) {
-		return recetaService.addReceta(receta);
+	public RecetaCompleta addReceta(@RequestBody RecetaCompleta recetaRQ) {
+		RecetaCompleta recetaCompletaAñadida = new RecetaCompleta();
+
+		Receta recetaAñadida = recetaService.addReceta(recetaRQ);
+		List<Ingrediente> ingredientesAñadidos = ingredienteService.addIngredientes(recetaRQ.getIngredientes());
+
+		recetaCompletaAñadida.setReceta(recetaAñadida);
+		recetaCompletaAñadida.setIngredientes(ingredientesAñadidos);
+		detalleRecetaService.addDetalleReceta(recetaCompletaAñadida);
+
+		return recetaCompletaAñadida;
 	}
 	
 	@PostMapping("/actualizarReceta")
@@ -57,7 +66,7 @@ public class RecetaController {
     public RecetaCompleta buscarReceta(@PathVariable int idReceta){
         RecetaCompleta recetaCompleta = new RecetaCompleta();
 
-        Receta receta = recetaService.BuscarReceta(id);
+        Receta receta = recetaService.BuscarReceta(idReceta);
         List<Ingrediente> ingredientes = ingredienteService.getAll();
         List<DetalleReceta> detalleReceta = detalleRecetaService.getAll().stream()
                                                                 .filter(d -> d.getIdreceta() == receta.getIdreceta())

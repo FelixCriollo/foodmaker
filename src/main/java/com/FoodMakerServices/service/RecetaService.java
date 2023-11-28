@@ -7,9 +7,10 @@ import com.FoodMakerServices.entity.Usuario;
 import com.FoodMakerServices.entity.dto.receta.AgregarRecetaDto;
 import com.FoodMakerServices.entity.dto.receta.AvailableRQ;
 import com.FoodMakerServices.entity.dto.receta.AvailableRS;
+import com.FoodMakerServices.entity.dto.receta.RecetaCompleta;
 
 public interface RecetaService {
-	public Receta addReceta(AgregarRecetaDto receta);
+	public Receta addReceta(RecetaCompleta receta);
 	public Receta updateReceta(Receta receta);
 	public boolean deleteReceta(Receta receta);
 	public List<Receta> getAll();
