@@ -51,12 +51,13 @@ public class RecetaController {
 		return recetaService.updateReceta(receta);
 	}
 	
+
 	@GetMapping("/buscarReceta/{idReceta}")
 	@ResponseBody
     public RecetaCompleta buscarReceta(@PathVariable int idReceta){
         RecetaCompleta recetaCompleta = new RecetaCompleta();
 
-        Receta receta = recetaService.BuscarReceta(idReceta);
+        Receta receta = recetaService.BuscarReceta(id);
         List<Ingrediente> ingredientes = ingredienteService.getAll();
         List<DetalleReceta> detalleReceta = detalleRecetaService.getAll().stream()
                                                                 .filter(d -> d.getIdreceta() == receta.getIdreceta())
@@ -71,7 +72,6 @@ public class RecetaController {
 
         recetaCompleta.setReceta(receta);
         recetaCompleta.setIngredientes(ingredienteByReceta);
-        
         return recetaCompleta;
     }
 	

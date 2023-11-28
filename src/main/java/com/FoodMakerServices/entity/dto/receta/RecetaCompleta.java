@@ -9,7 +9,7 @@ import lombok.Data;
 
 @Data
 public class RecetaCompleta {
-	Receta receta;
-	List<Ingrediente> ingredientes;
-	int cantidadCoincidencias;
+	private Receta receta;
+	private List<Ingrediente> ingredientes;
+	private int cantidadCoincidencias;
 }

@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,14 +45,33 @@ public class ColeccionController {
 	@GetMapping("/getcoleccion")
 	public List<ColeccionCargadaDto> allCollectionsByUser(){
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		
 
+        // Verifica si el usuario está autenticado
+        if (authentication != null && authentication.isAuthenticated()) {
+            // Obtiene los detalles del usuario logeado
+            Object principal = authentication.getPrincipal();
+
+            if (principal instanceof UserDetails) {
+                String username = ((UserDetails) principal).getUsername();
+                // Puedes acceder a más información según tus necesidades
+                System.out.println(username);
+            } else {
+                String username = principal.toString();
+                System.out.println("else");
+                // Maneja otros casos según sea necesario
+                System.out.println(username);
+            }
+        } else {
+            // El usuario no está autenticado
+        }
+		
 		if (authentication.getPrincipal() instanceof UserDetailsImplJwt) {
 			UserDetailsImplJwt userDetails = (UserDetailsImplJwt) authentication.getPrincipal();
-		    
+		    System.out.println(userDetails.toString());
 			return coleccionService.getByUsuario(userDetails.getIdUser());
 		}
-		
-		return coleccionService.getByUsuario(1);
+		return null;
 	}
 	
 	@PostMapping("/coleccion/crear")

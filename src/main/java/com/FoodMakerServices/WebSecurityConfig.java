@@ -12,6 +12,7 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -53,13 +54,12 @@ public class WebSecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues()))
-                /*.authorizeHttpRequests((authz) -> authz
-                    .requestMatchers("/").permitAll()
+                .authorizeHttpRequests((authz) -> authz
                     .requestMatchers(HttpMethod.POST, "/registrar").permitAll()
                     .requestMatchers(HttpMethod.POST, "/login").permitAll()
-                    .requestMatchers(HttpMethod.POST, "/anadirReceta").permitAll()
                     .anyRequest().authenticated()
-                )*/
+                )
+                .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilter(JWTAuthtenticationFilter)
                 .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
@@ -68,6 +68,7 @@ public class WebSecurityConfig {
     @Bean
     AuthenticationManager authManager(HttpSecurity http) throws Exception {
 		return http.getSharedObject(AuthenticationManagerBuilder.class)
-				.userDetailsService((UserDetailsService) userDetailsService).passwordEncoder(encoder()).and().build();
+				.userDetailsService((UserDetailsService) userDetailsService)
+				.passwordEncoder(encoder()).and().build();
     }
 }
