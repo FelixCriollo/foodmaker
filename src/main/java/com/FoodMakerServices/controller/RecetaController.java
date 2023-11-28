@@ -18,7 +18,6 @@ import com.FoodMakerServices.entity.Ingrediente;
 import com.FoodMakerServices.entity.Receta;
 import com.FoodMakerServices.entity.dto.receta.AgregarRecetaDto;
 import com.FoodMakerServices.entity.dto.receta.AvailableRQ;
-import com.FoodMakerServices.entity.dto.receta.AvailableRS;
 import com.FoodMakerServices.entity.dto.receta.RecetaCompleta;
 import com.FoodMakerServices.service.DetalleRecetaService;
 import com.FoodMakerServices.service.IngredienteService;
