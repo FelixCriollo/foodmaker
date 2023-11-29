@@ -122,11 +122,8 @@ public class RecetaController {
 		        List<Ingrediente> ingredientesByRef = new ArrayList();
 		        
 		        for (DetalleReceta dr : refByReceta) {
-		        	try {
-		        		Ingrediente ingrediente = ingredientes.get(dr.getIdingrediente());
-			        	ingredientesByRef.add(ingrediente);
-		        	} catch (Exception e) {
-					}
+		        	Ingrediente ingrediente = ingredientes.get(dr.getIdingrediente() - 1);
+		        	ingredientesByRef.add(ingrediente);
 		        }
 		        
 		        recetaCompleta.setIngredientes(ingredientesByRef);
