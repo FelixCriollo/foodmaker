@@ -55,7 +55,7 @@ public class ColeccionController {
             if (principal instanceof UserDetails) {
                 String username = ((UserDetails) principal).getUsername();
                 // Puedes acceder a más información según tus necesidades
-                System.out.println(username);
+                System.out.println(username); 
             } else {
                 String username = principal.toString();
                 System.out.println("else");

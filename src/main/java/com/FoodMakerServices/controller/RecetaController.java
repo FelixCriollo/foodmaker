@@ -58,7 +58,7 @@ public class RecetaController {
     public RecetaCompleta buscarReceta(@PathVariable int idReceta){
         RecetaCompleta recetaCompleta = new RecetaCompleta();
 
-        Receta receta = recetaService.BuscarReceta(id);
+        Receta receta = recetaService.BuscarReceta(idReceta);
         List<Ingrediente> ingredientes = ingredienteService.getAll();
         List<DetalleReceta> detalleReceta = detalleRecetaService.getAll().stream()
                                                                 .filter(d -> d.getIdreceta() == receta.getIdreceta())
