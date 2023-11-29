@@ -5,20 +5,20 @@ import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.FoodMakerServices.entity.Receta;
+import com.FoodMakerServices.entity.dto.receta.AgregarRecetaDto;
 import com.FoodMakerServices.entity.dto.receta.RecetaCompleta;
 import com.FoodMakerServices.repository.RecetaRepository;
 import com.FoodMakerServices.service.DetalleColeccionService;
 import com.FoodMakerServices.service.RecetaService;
-
-import lombok.AllArgsConstructor;
-
 @Service
-@AllArgsConstructor
 public class RecetaServiceImpl implements RecetaService {
+	@Autowired
 	RecetaRepository repo;
+	@Autowired
 	DetalleColeccionService dcs;
 
 	public Receta addReceta(RecetaCompleta recetaCompleta) {
@@ -56,13 +56,7 @@ public class RecetaServiceImpl implements RecetaService {
 
 	@Override
 	public Receta BuscarReceta(int idReceta) {
-		Receta receta = repo.getById(idReceta);
-
-		if(receta == null) {
-			throw new RuntimeException("La receta " + receta.getNombre() + " no existe");
-		}
-
-		return receta;
+		return repo.getById(idReceta);
 	}
 
 	public Receta updateReceta(Receta receta) {
@@ -75,13 +69,15 @@ public class RecetaServiceImpl implements RecetaService {
 		return repo.save(receta);
 	}
 
-	public boolean deleteReceta(Receta receta) {
-		try {
-			repo.delete(receta);
-			return true;
-		}catch (Exception e) {
-			return false;
-		}
+	public boolean deleteReceta(int idReceta) {
+		Optional<Receta> recetaOptional = repo.findById(idReceta);
+
+	    if (recetaOptional.isPresent()) {
+	        repo.deleteById(idReceta);
+	        return true;
+	    } else {
+	        return false;
+	    }
 	}
 
 	@Override

@@ -9,15 +9,13 @@ import com.FoodMakerServices.entity.DetalleReceta;
 import com.FoodMakerServices.entity.Ingrediente;
 import com.FoodMakerServices.entity.dto.receta.RecetaCompleta;
 import com.FoodMakerServices.repository.DetalleRecetaRepository;
-import com.FoodMakerServices.security.JWTAuthorizationFilter;
-import com.FoodMakerServices.security.UserDetailsServiceImplJwt;
 import com.FoodMakerServices.service.DetalleRecetaService;
 
-import lombok.AllArgsConstructor;
+import jakarta.transaction.Transactional;
 @Service
-@AllArgsConstructor
 public class DetalleRecetaServiceImpl implements DetalleRecetaService {
 
+	@Autowired
 	DetalleRecetaRepository repo;
 
 	public List<DetalleReceta> getAll() {
@@ -31,5 +29,11 @@ public class DetalleRecetaServiceImpl implements DetalleRecetaService {
 			detalleReceta.setIdreceta(recetaCompleta.getReceta().getIdreceta());
 			repo.save(detalleReceta);
 		}
+	}
+
+	@Override
+	@Transactional
+	public void deleteDetalleReceta(int idReceta) {
+		repo.deleteAllByIdReceta(idReceta);
 	}
 }
