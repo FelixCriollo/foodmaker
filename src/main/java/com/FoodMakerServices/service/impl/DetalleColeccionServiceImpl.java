@@ -7,12 +7,16 @@ import org.springframework.stereotype.Service;
 
 import com.FoodMakerServices.entity.DetalleColeccion;
 import com.FoodMakerServices.repository.DetalleColeccionRepository;
+import com.FoodMakerServices.security.JWTAuthorizationFilter;
+import com.FoodMakerServices.security.UserDetailsServiceImplJwt;
 import com.FoodMakerServices.service.DetalleColeccionService;
 
+import lombok.AllArgsConstructor;
+
 @Service
+@AllArgsConstructor
 public class DetalleColeccionServiceImpl implements DetalleColeccionService {
 
-	@Autowired
 	DetalleColeccionRepository repo;
 	
 	@Override

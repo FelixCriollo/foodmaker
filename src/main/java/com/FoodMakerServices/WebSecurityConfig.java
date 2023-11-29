@@ -23,11 +23,10 @@ import com.FoodMakerServices.security.UserDetailsServiceImplJwt;
 import lombok.AllArgsConstructor;
 
 @Configuration
+@AllArgsConstructor
 public class WebSecurityConfig {
 	
-	@Autowired
 	private UserDetailsServiceImplJwt userDetailsService;
-	@Autowired
 	private JWTAuthorizationFilter jwtAuthorizationFilter;
 
     @Bean

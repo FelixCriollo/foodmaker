@@ -3,15 +3,16 @@ package com.FoodMakerServices.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.FoodMakerServices.entity.Ingrediente;
 import com.FoodMakerServices.repository.IngredienteRepository;
 import com.FoodMakerServices.service.IngredienteService;
+
+import lombok.AllArgsConstructor;
 @Service
+@AllArgsConstructor
 public class IngredienteServiceImpl implements IngredienteService {
-	@Autowired
 	IngredienteRepository repo;
 
 	public List<Ingrediente> getAll(){

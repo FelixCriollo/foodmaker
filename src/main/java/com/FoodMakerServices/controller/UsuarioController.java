@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.FoodMakerServices.entity.Usuario;
 import com.FoodMakerServices.entity.dto.LoginDto;
+import com.FoodMakerServices.security.JWTAuthorizationFilter;
+import com.FoodMakerServices.security.UserDetailsServiceImplJwt;
 import com.FoodMakerServices.service.UsuarioService;
 
 import lombok.AllArgsConstructor;
@@ -18,8 +20,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.server.ResponseStatusException;
 
 @RestController
+@AllArgsConstructor
 public class UsuarioController {
-	@Autowired
 	UsuarioService usuarioService;
 	
 	@PostMapping("/usuarios")

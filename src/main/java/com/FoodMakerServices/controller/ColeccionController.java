@@ -1,12 +1,8 @@
 package com.FoodMakerServices.controller;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,27 +15,25 @@ import org.springframework.security.core.Authentication;
 
 
 import com.FoodMakerServices.entity.Coleccion;
-import com.FoodMakerServices.entity.Receta;
 import com.FoodMakerServices.entity.Usuario;
 import com.FoodMakerServices.entity.dto.coleccion.ActColeccionRQ;
 import com.FoodMakerServices.entity.dto.coleccion.AgregarRecetaRQ;
 import com.FoodMakerServices.entity.dto.coleccion.ColeccionCargadaDto;
 import com.FoodMakerServices.entity.dto.coleccion.CrearColeccionRQ;
-import com.FoodMakerServices.security.UserDetailsImplJwt;
 import com.FoodMakerServices.service.ColeccionService;
 import com.FoodMakerServices.service.DetalleColeccionService;
 import com.FoodMakerServices.service.UsuarioService;
 
+import lombok.AllArgsConstructor;
+
 @RestController
+@AllArgsConstructor
 public class ColeccionController {
-	
-	@Autowired
+
 	ColeccionService coleccionService;
-	
-	@Autowired
+
 	DetalleColeccionService detalleColeccionService;
-	
-	@Autowired
+
 	UsuarioService usuarioService;
 	
 	@GetMapping("/coleccions")

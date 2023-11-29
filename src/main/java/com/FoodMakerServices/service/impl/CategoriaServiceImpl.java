@@ -7,12 +7,16 @@ import org.springframework.stereotype.Service;
 
 import com.FoodMakerServices.entity.Categoria;
 import com.FoodMakerServices.repository.CategoriaRepository;
+import com.FoodMakerServices.security.JWTAuthorizationFilter;
+import com.FoodMakerServices.security.UserDetailsServiceImplJwt;
 import com.FoodMakerServices.service.CategoriaService;
 
+import lombok.AllArgsConstructor;
+
 @Service
+@AllArgsConstructor
 public class CategoriaServiceImpl implements CategoriaService {
 
-	@Autowired
 	CategoriaRepository repo;
 	
 	@Override

@@ -9,11 +9,15 @@ import com.FoodMakerServices.entity.DetalleReceta;
 import com.FoodMakerServices.entity.Ingrediente;
 import com.FoodMakerServices.entity.dto.receta.RecetaCompleta;
 import com.FoodMakerServices.repository.DetalleRecetaRepository;
+import com.FoodMakerServices.security.JWTAuthorizationFilter;
+import com.FoodMakerServices.security.UserDetailsServiceImplJwt;
 import com.FoodMakerServices.service.DetalleRecetaService;
+
+import lombok.AllArgsConstructor;
 @Service
+@AllArgsConstructor
 public class DetalleRecetaServiceImpl implements DetalleRecetaService {
 
-	@Autowired
 	DetalleRecetaRepository repo;
 
 	public List<DetalleReceta> getAll() {

@@ -14,10 +14,11 @@ import com.FoodMakerServices.service.impl.UsuarioServiceImpl;
 
 import lombok.AllArgsConstructor;
 
-@Service																																																																																						
+@Service
+@AllArgsConstructor
 public class UserDetailsServiceImplJwt implements UserDetailsService {
-	@Autowired
-	private UsuarioServiceImpl UsuarioService;
+
+	UsuarioServiceImpl UsuarioService;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

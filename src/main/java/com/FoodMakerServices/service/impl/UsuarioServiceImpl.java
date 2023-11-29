@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import com.FoodMakerServices.entity.Usuario;
 import com.FoodMakerServices.entity.dto.LoginDto;
 import com.FoodMakerServices.repository.UsuarioRepository;
+import com.FoodMakerServices.security.JWTAuthorizationFilter;
+import com.FoodMakerServices.security.UserDetailsServiceImplJwt;
 import com.FoodMakerServices.service.UsuarioService;
 
 import lombok.AllArgsConstructor;
@@ -20,8 +22,8 @@ import lombok.AllArgsConstructor;
 public class UsuarioServiceImpl implements UsuarioService {
 	@Autowired
 	UsuarioRepository repo;
-	@Autowired
 	@Lazy
+	@Autowired
 	PasswordEncoder encoder;
 	
 	public Usuario addUsuario(Usuario usuario) {

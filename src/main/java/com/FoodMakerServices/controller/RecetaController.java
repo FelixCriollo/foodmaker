@@ -10,13 +10,11 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.FoodMakerServices.entity.DetalleReceta;
 import com.FoodMakerServices.entity.Ingrediente;
 import com.FoodMakerServices.entity.Receta;
-import com.FoodMakerServices.entity.dto.receta.AgregarRecetaDto;
 import com.FoodMakerServices.entity.dto.receta.AvailableRQ;
 import com.FoodMakerServices.entity.dto.receta.RecetaCompleta;
 import com.FoodMakerServices.service.DetalleRecetaService;
@@ -25,13 +23,13 @@ import com.FoodMakerServices.service.RecetaService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import lombok.AllArgsConstructor;
+
 @RestController
+@AllArgsConstructor
 public class RecetaController {
-	@Autowired
 	RecetaService recetaService;
-	@Autowired
 	IngredienteService ingredienteService;
-	@Autowired
 	DetalleRecetaService detalleRecetaService;
 	
 	@GetMapping("/recetas")

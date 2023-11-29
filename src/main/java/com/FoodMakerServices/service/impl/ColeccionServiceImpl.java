@@ -19,23 +19,23 @@ import com.FoodMakerServices.entity.dto.coleccion.ColeccionCargadaDto;
 import com.FoodMakerServices.repository.ColeccionRepository;
 import com.FoodMakerServices.repository.DetalleColeccionRepository;
 import com.FoodMakerServices.repository.RecetaRepository;
+import com.FoodMakerServices.security.JWTAuthorizationFilter;
 import com.FoodMakerServices.security.UserDetailsImplJwt;
+import com.FoodMakerServices.security.UserDetailsServiceImplJwt;
 import com.FoodMakerServices.service.ColeccionService;
 import com.FoodMakerServices.service.RecetaService;
 import com.FoodMakerServices.service.UsuarioService;
 
 import jakarta.transaction.Transactional;
+import lombok.AllArgsConstructor;
 
 @Service
+@AllArgsConstructor
 public class ColeccionServiceImpl implements ColeccionService {
 
-	@Autowired
 	ColeccionRepository repo;
-	@Autowired
 	RecetaService recetarepo;
-	@Autowired
 	DetalleColeccionRepository detarepo;
-	@Autowired
 	UsuarioService usuarioservice;
 	
 	@Override
