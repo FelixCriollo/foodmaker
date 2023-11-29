@@ -18,7 +18,6 @@ import com.FoodMakerServices.entity.Ingrediente;
 import com.FoodMakerServices.entity.Receta;
 import com.FoodMakerServices.entity.dto.receta.AgregarRecetaDto;
 import com.FoodMakerServices.entity.dto.receta.AvailableRQ;
-import com.FoodMakerServices.entity.dto.receta.AvailableRS;
 import com.FoodMakerServices.entity.dto.receta.RecetaCompleta;
 import com.FoodMakerServices.service.DetalleRecetaService;
 import com.FoodMakerServices.service.IngredienteService;
@@ -39,11 +38,20 @@ public class RecetaController {
 	public List<Receta> allRecetas(){
 		return recetaService.getAll();
 	}
-	
+
 	@PostMapping("/anadirReceta")
 	@ResponseBody
-	public Receta addReceta(@RequestBody AgregarRecetaDto receta) {
-		return recetaService.addReceta(receta);
+	public RecetaCompleta addReceta(@RequestBody RecetaCompleta recetaRQ) {
+		RecetaCompleta recetaCompletaAñadida = new RecetaCompleta();
+
+		Receta recetaAñadida = recetaService.addReceta(recetaRQ);
+		List<Ingrediente> ingredientesAñadidos = ingredienteService.addIngredientes(recetaRQ.getIngredientes());
+
+		recetaCompletaAñadida.setReceta(recetaAñadida);
+		recetaCompletaAñadida.setIngredientes(ingredientesAñadidos);
+		detalleRecetaService.addDetalleReceta(recetaCompletaAñadida);
+
+		return recetaCompletaAñadida;
 	}
 	
 	@PostMapping("/actualizarReceta")
