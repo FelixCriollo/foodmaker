@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.FoodMakerServices.entity.Coleccion;
 import com.FoodMakerServices.entity.DetalleColeccion;
 import com.FoodMakerServices.entity.Receta;
+import com.FoodMakerServices.entity.Usuario;
 import com.FoodMakerServices.entity.dto.coleccion.ActColeccionRQ;
 import com.FoodMakerServices.entity.dto.coleccion.AgregarRecetaRQ;
 import com.FoodMakerServices.entity.dto.coleccion.ColeccionCargadaDto;
@@ -21,6 +22,7 @@ import com.FoodMakerServices.repository.RecetaRepository;
 import com.FoodMakerServices.security.UserDetailsImplJwt;
 import com.FoodMakerServices.service.ColeccionService;
 import com.FoodMakerServices.service.RecetaService;
+import com.FoodMakerServices.service.UsuarioService;
 
 import jakarta.transaction.Transactional;
 
@@ -33,6 +35,8 @@ public class ColeccionServiceImpl implements ColeccionService {
 	RecetaService recetarepo;
 	@Autowired
 	DetalleColeccionRepository detarepo;
+	@Autowired
+	UsuarioService usuarioservice;
 	
 	@Override
 	public List<ColeccionCargadaDto> getAll() {
@@ -52,6 +56,7 @@ public class ColeccionServiceImpl implements ColeccionService {
 	public List<ColeccionCargadaDto> getByUsuario(int idusuario) {
 		
 		var algo = repo.findByIdusuario(idusuario).orElse(new ArrayList<>());
+		System.out.println(algo);
 		List<ColeccionCargadaDto> rsp = new ArrayList<ColeccionCargadaDto>();
 		algo.forEach(a -> {
 			ColeccionCargadaDto c = new ColeccionCargadaDto();
@@ -69,12 +74,10 @@ public class ColeccionServiceImpl implements ColeccionService {
 		coleccion.setNombre(nombre);
 		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String email = authentication.getPrincipal().toString().substring(5).substring(0, authentication.getPrincipal().toString().substring(5).indexOf(",")).trim();
+		Usuario user = usuarioservice.getByCorreo(email);
 
-		if (authentication.getPrincipal() instanceof UserDetailsImplJwt) {
-			UserDetailsImplJwt userDetails = (UserDetailsImplJwt) authentication.getPrincipal();
-		    coleccion.setIdusuario(1);
-		}
-		coleccion.setIdusuario(1);
+		coleccion.setIdusuario(user.getIdusuario());
 		repo.save(coleccion);
 		
 		return coleccion;

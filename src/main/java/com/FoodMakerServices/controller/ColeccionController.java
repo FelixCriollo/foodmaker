@@ -20,6 +20,7 @@ import org.springframework.security.core.Authentication;
 
 import com.FoodMakerServices.entity.Coleccion;
 import com.FoodMakerServices.entity.Receta;
+import com.FoodMakerServices.entity.Usuario;
 import com.FoodMakerServices.entity.dto.coleccion.ActColeccionRQ;
 import com.FoodMakerServices.entity.dto.coleccion.AgregarRecetaRQ;
 import com.FoodMakerServices.entity.dto.coleccion.ColeccionCargadaDto;
@@ -27,6 +28,7 @@ import com.FoodMakerServices.entity.dto.coleccion.CrearColeccionRQ;
 import com.FoodMakerServices.security.UserDetailsImplJwt;
 import com.FoodMakerServices.service.ColeccionService;
 import com.FoodMakerServices.service.DetalleColeccionService;
+import com.FoodMakerServices.service.UsuarioService;
 
 @RestController
 public class ColeccionController {
@@ -37,6 +39,9 @@ public class ColeccionController {
 	@Autowired
 	DetalleColeccionService detalleColeccionService;
 	
+	@Autowired
+	UsuarioService usuarioService;
+	
 	@GetMapping("/coleccions")
 	public List<ColeccionCargadaDto> allCategorias(){
 		return coleccionService.getAll();
@@ -45,33 +50,11 @@ public class ColeccionController {
 	@GetMapping("/getcoleccion")
 	public List<ColeccionCargadaDto> allCollectionsByUser(){
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		
-
-        // Verifica si el usuario está autenticado
-        if (authentication != null && authentication.isAuthenticated()) {
-            // Obtiene los detalles del usuario logeado
-            Object principal = authentication.getPrincipal();
-
-            if (principal instanceof UserDetails) {
-                String username = ((UserDetails) principal).getUsername();
-                // Puedes acceder a más información según tus necesidades
-                System.out.println(username); 
-            } else {
-                String username = principal.toString();
-                System.out.println("else");
-                // Maneja otros casos según sea necesario
-                System.out.println(username);
-            }
-        } else {
-            // El usuario no está autenticado
-        }
-		
-		if (authentication.getPrincipal() instanceof UserDetailsImplJwt) {
-			UserDetailsImplJwt userDetails = (UserDetailsImplJwt) authentication.getPrincipal();
-		    System.out.println(userDetails.toString());
-			return coleccionService.getByUsuario(userDetails.getIdUser());
-		}
-		return null;
+		String email = authentication.getPrincipal().toString().substring(5).substring(0, authentication.getPrincipal().toString().substring(5).indexOf(",")).trim();
+		Usuario user = usuarioService.getByCorreo(email);
+		var colecc = coleccionService.getByUsuario(user.getIdusuario());
+		System.out.println(colecc);
+		return colecc;
 	}
 	
 	@PostMapping("/coleccion/crear")
