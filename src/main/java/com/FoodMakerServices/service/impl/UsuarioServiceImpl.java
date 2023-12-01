@@ -43,7 +43,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	@Override
 	public Usuario obtenerUsuario(int idusuario) {
-		return repo.findById(String.valueOf(idusuario)).orElse(null);
+		return repo.findById(String.valueOf(idusuario)).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuario no encontrado con ID: " + idusuario));
 	}
 
 	@Override
