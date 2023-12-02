@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 
 
@@ -57,8 +57,9 @@ public class ColeccionController {
 	}
 	
 	@DeleteMapping("/coleccion/eliminar/{id}")
-	public void eliminar(@PathVariable int id) {
-		coleccionService.delete(id);
+	public ResponseEntity<String> eliminar(@PathVariable String id) {
+		coleccionService.delete(Integer.parseInt(id));
+		return ResponseEntity.ok("Colección eliminada correctamente");
 	}
 	
 	@PutMapping("/coleccion/actualizar")

@@ -16,6 +16,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
 import com.FoodMakerServices.security.JWTAuthorizationFilter;
 import com.FoodMakerServices.security.JWTAuthtenticationFilter;
 import com.FoodMakerServices.security.UserDetailsServiceImplJwt;
@@ -35,6 +38,14 @@ public class WebSecurityConfig {
     };
     
     @Bean
+    CorsConfigurationSource corsConfigurationSource() {
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration corsConfiguration = new CorsConfiguration().applyPermitDefaultValues();
+        corsConfiguration.addAllowedMethod("*");
+        return source;
+    }
+    
+    @Bean
     SecurityFilterChain filterChain(HttpSecurity http, AuthenticationManager authManager) throws Exception {
     	JWTAuthtenticationFilter JWTAuthtenticationFilter = new JWTAuthtenticationFilter();
     	JWTAuthtenticationFilter.setAuthenticationManager(authManager);
@@ -42,7 +53,7 @@ public class WebSecurityConfig {
     	
         http
                 .csrf(csrf -> csrf.disable())
-                .cors(cors -> cors.configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues()))
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests((authz) -> authz
                     .requestMatchers(HttpMethod.POST, "/registrar").permitAll()
                     .requestMatchers(HttpMethod.POST, "/login").permitAll()
