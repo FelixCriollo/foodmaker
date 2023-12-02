@@ -8,4 +8,5 @@ import com.FoodMakerServices.entity.dto.receta.RecetaCompleta;
 public interface DetalleRecetaService {
 	public List<DetalleReceta> getAll();
 	public void addDetalleReceta(RecetaCompleta recetaCompleta);
+	public void deleteDetalleReceta(int idReceta);
 }

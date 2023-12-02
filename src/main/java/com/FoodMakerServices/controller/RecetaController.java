@@ -10,6 +10,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.FoodMakerServices.entity.DetalleReceta;
@@ -23,13 +26,13 @@ import com.FoodMakerServices.service.RecetaService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import lombok.AllArgsConstructor;
-
 @RestController
-@AllArgsConstructor
 public class RecetaController {
+	@Autowired
 	RecetaService recetaService;
+	@Autowired
 	IngredienteService ingredienteService;
+	@Autowired
 	DetalleRecetaService detalleRecetaService;
 	
 	@GetMapping("/recetas")
@@ -39,6 +42,7 @@ public class RecetaController {
 
 	@PostMapping("/anadirReceta")
 	@ResponseBody
+	@ResponseStatus(code = HttpStatus.CREATED)
 	public RecetaCompleta addReceta(@RequestBody RecetaCompleta recetaRQ) {
 		RecetaCompleta recetaCompletaAñadida = new RecetaCompleta();
 
@@ -60,11 +64,14 @@ public class RecetaController {
 	
 
 	@GetMapping("/buscarReceta/{idReceta}")
-	@ResponseBody
-    public RecetaCompleta buscarReceta(@PathVariable int idReceta){
+    public ResponseEntity<RecetaCompleta> buscarReceta(@PathVariable int idReceta){
         RecetaCompleta recetaCompleta = new RecetaCompleta();
 
         Receta receta = recetaService.BuscarReceta(idReceta);
+        if(receta == null) {
+        	return ResponseEntity.notFound().build();
+        }
+        
         List<Ingrediente> ingredientes = ingredienteService.getAll();
         List<DetalleReceta> detalleReceta = detalleRecetaService.getAll().stream()
                                                                 .filter(d -> d.getIdreceta() == receta.getIdreceta())
@@ -79,18 +86,19 @@ public class RecetaController {
 
         recetaCompleta.setReceta(receta);
         recetaCompleta.setIngredientes(ingredienteByReceta);
-        return recetaCompleta;
+        return ResponseEntity.ok(recetaCompleta);
     }
 	
-	@PostMapping("/eliminarReceta/{idReceta}")
+	@DeleteMapping("/eliminarReceta/{idReceta}")
 	@ResponseBody
 	public String deleteReceta(@PathVariable int idReceta) {
-		Receta receta = recetaService.BuscarReceta(idReceta);
-		boolean isDelete = recetaService.deleteReceta(receta);
-		if(isDelete) {
-			return "Se ha eliminado con éxtio la receta " + receta.getNombre();
+		detalleRecetaService.deleteDetalleReceta(idReceta);
+		boolean isDeleteReceta = recetaService.deleteReceta(idReceta);
+		
+		if(isDeleteReceta) {
+			return "Se ha eliminado con éxtio la receta";
 		}else {
-			return "No se ha podido eliminar la receta " + receta.getNombre();		
+			return "No se ha podido eliminar la receta";		
 		}
 	}
 	
@@ -139,6 +147,7 @@ public class RecetaController {
 	}
 	
 	// Helpers
+	// Lógica de entrada del Refrigerador
 	public static JsonNode leerJsonDesdeArchivo(String rutaArchivo) {
         try {
             // Crea un objeto ObjectMapper
@@ -151,8 +160,7 @@ public class RecetaController {
             return null;
         }
     }
-	
-	 public static String obtenerRutaAbsoluta(String rutaRelativa) {
+	public static String obtenerRutaAbsoluta(String rutaRelativa) {
         //Obtiene la ruta absoluta del directorio actual
         Path rutaBase = Paths.get(System.getProperty("user.dir"));
         
@@ -162,8 +170,6 @@ public class RecetaController {
         // Convierte la ruta a formato de cadena y la retorna
         return rutaAbsoluta.toString();
     }
-
-	
 	public static JsonNode GetIngredientesRefrigerador() {
 		String rutaRelativa = "/refrigerador.json";
 		String rutaAbsoluta = new File ("refrigerador.json").getAbsolutePath();
@@ -171,7 +177,7 @@ public class RecetaController {
         
         return jsonNode;
 	}
-	
+
 	public static List<RecetaCompleta> ConstruirRecetasDisponibles(List<RecetaCompleta> recetas){
 		JsonNode ingredienteRefrigerador = GetIngredientesRefrigerador();
 		

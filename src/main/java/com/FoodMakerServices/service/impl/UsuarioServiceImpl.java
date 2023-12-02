@@ -43,25 +43,18 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	@Override
 	public Usuario obtenerUsuario(int idusuario) {
-		return repo.findById(String.valueOf(idusuario)).orElse(null);
+		return repo.findById(String.valueOf(idusuario)).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuario no encontrado con ID: " + idusuario));
 	}
 
 	@Override
 	public Usuario actualizarUsuario(Usuario objUsuario) {
-		Optional<Usuario> usuarioOptional = repo.findById(String.valueOf(objUsuario.getIdusuario()));
-		Usuario existingUsuario = null;
-		if (usuarioOptional.isPresent()) {
-			existingUsuario = usuarioOptional.get();
-			existingUsuario.setNombre(objUsuario.getNombre());
-			existingUsuario.setCorreo(objUsuario.getCorreo());
-			existingUsuario.setContrasenia(encoder.encode(objUsuario.getContrasenia()));
+		Usuario existingUsuario = obtenerUsuario(objUsuario.getIdusuario());
 
+		existingUsuario.setNombre(objUsuario.getNombre());
+		existingUsuario.setCorreo(objUsuario.getCorreo());
+		existingUsuario.setContrasenia(encoder.encode(objUsuario.getContrasenia()));
 
-			return repo.save(existingUsuario);
-		}else{
-
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "El usuario con ID " + objUsuario.getIdusuario() + " no existe.");
-		}
+		return repo.save(existingUsuario);
 	}
 
 	@Override
